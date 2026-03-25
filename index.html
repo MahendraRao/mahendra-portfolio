@@ -645,6 +645,12 @@
       .stats-row { grid-template-columns: 1fr 1fr; }
     }
   </style>
+
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -1044,7 +1050,7 @@
 
   // ══════════════════════════════════════════════
   //  SCROLL REVEAL
-  // ══════════════════════════════════════════════
+  // ═════════════════════════════���════════════════
   (function () {
     // stagger siblings inside grids
     ['skills-grid','proj-grid','blog-grid','about-cards','stats-row'].forEach(cls => {
