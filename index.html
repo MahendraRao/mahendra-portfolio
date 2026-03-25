@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahendra Rao — Observability & Customer Success</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Sora:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    :root {
+      --bg:          #0d0b08;
+      --surface:     #181410;
+      --surface2:    #201c17;
+      --amber:       #e59c0f;
+      --amber-light: #f5bc45;
+      --amber-dim:   rgba(229,156,15,0.12);
+      --amber-glow:  rgba(229,156,15,0.06);
+      --text:        #ede0cc;
+      --muted:       #7a6e62;
+      --border:      rgba(229,156,15,0.13);
+      --font-d:      'Cormorant Garamond', serif;
+      --font-b:      'Sora', sans-serif;
+      --font-m:      'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-b);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── GRAIN OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.3rem 5rem;
+      background: rgba(13,11,8,0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: padding .3s;
+    }
+    .nav-logo {
+      font-family: var(--font-d);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--amber);
+      letter-spacing: .06em;
+      text-decoration: none;
+      user-select: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--amber); }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 201;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--amber);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    #three-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+    /* amber radial glow behind content */
+    #hero::after {
+      content: '';
+      position: absolute;
+      left: -10vw; top: 10%;
+      width: 60vw; height: 70vh;
+      background: radial-gradient(ellipse at 30% 50%, rgba(229,156,15,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 5rem;
+      max-width: 1000px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .35rem 1rem;
+      border: 1px solid var(--amber);
+      border-radius: 50px;
+      font-size: .68rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.8rem;
+      font-family: var(--font-m);
+      animation: fadeUp .7s ease both;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--amber);
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+    .hero-name {
+      font-family: var(--font-d);
+      font-size: clamp(3.2rem, 9vw, 7rem);
+      font-weight: 300;
+      line-height: 1.02;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      animation: fadeUp .7s .1s ease both;
+    }
+    .hero-name em { font-style: italic; color: var(--amber); }
+    .hero-tagline {
+      font-family: var(--font-d);
+      font-size: clamp(1.05rem, 2.2vw, 1.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 2.8rem;
+      max-width: 620px;
+      animation: fadeUp .7s .2s ease both;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp .7s .32s ease both;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: .88rem 2.2rem;
+      background: var(--amber);
+      color: #0d0b08;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .78rem;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover {
+      background: var(--amber-light);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(229,156,15,0.25);
+    }
+    .btn-secondary {
+      display: inline-block;
+      padding: .88rem 2.2rem;
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: .78rem;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background .2s, transform .2s;
+    }
+    .btn-secondary:hover { background: var(--amber-dim); transform: translateY(-3px); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 5rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      color: var(--muted);
+      font-size: .65rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-family: var(--font-m);
+      animation: fadeIn 1.2s 1s ease both;
+      z-index: 2;
+    }
+    .scroll-hint-line {
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, var(--amber), transparent);
+      animation: widthPulse 2s infinite;
+    }
+
+    /* ─── SECTION SHELL ─── */
+    .sec-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 7rem 5rem;
+      border-top: 1px solid var(--border);
+    }
+    .sec-label {
+      font-family: var(--font-m);
+      font-size: .68rem;
+      color: var(--amber);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: .6rem;
+    }
+    .sec-title {
+      font-family: var(--font-d);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.08;
+      margin-bottom: 3.5rem;
+      color: var(--text);
+    }
+    .sec-title em { font-style: italic; color: var(--amber); }
+
+    /* reveal */
+    .r {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .r.on { opacity: 1; transform: translateY(0); }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-p {
+      color: var(--muted);
+      font-size: .94rem;
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+    .about-p strong { color: var(--text); font-weight: 500; }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2.8rem;
+    }
+    .stat {
+      padding: 1.4rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .stat-n {
+      font-family: var(--font-d);
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--amber);
+      line-height: 1;
+      margin-bottom: .2rem;
+    }
+    .stat-l { font-size: .73rem; color: var(--muted); }
+
+    .about-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+    .acard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.6rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .25s;
+    }
+    .acard:hover { border-color: rgba(229,156,15,.35); }
+    .acard::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--amber), transparent);
+    }
+    .acard h3 {
+      font-family: var(--font-d);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--amber);
+      margin-bottom: .9rem;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tag {
+      padding: .26rem .65rem;
+      background: var(--amber-dim);
+      border: 1px solid rgba(229,156,15,.2);
+      border-radius: 3px;
+      font-size: .68rem;
+      color: var(--amber-light);
+      font-family: var(--font-m);
+      letter-spacing: .04em;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .timeline { position: relative; padding-left: .5px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--amber) 0%, rgba(229,156,15,.1) 100%);
+    }
+    .titem {
+      padding-left: 2.8rem;
+      padding-bottom: 4rem;
+      position: relative;
+    }
+    .titem:last-child { padding-bottom: 0; }
+    .titem::before {
+      content: '';
+      position: absolute;
+      left: -4.5px; top: 7px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 12px rgba(229,156,15,.4);
+      border: 2px solid var(--bg);
+    }
+    .t-period {
+      font-family: var(--font-m);
+      font-size: .68rem;
+      color: var(--amber);
+      letter-spacing: .12em;
+      margin-bottom: .4rem;
+    }
+    .t-company {
+      font-family: var(--font-d);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: .15rem;
+    }
+    .t-role {
+      font-size: .8rem;
+      color: var(--amber);
+      font-weight: 500;
+      letter-spacing: .06em;
+      margin-bottom: .9rem;
+    }
+    .t-desc {
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.78;
+      max-width: 680px;
+    }
+    .t-tags { display: flex; flex-wrap: wrap; gap: .38rem; margin-top: .9rem; }
+
+    /* ─── SKILLS ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .sk-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.6rem;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      cursor: default;
+    }
+    .sk-card:hover {
+      border-color: rgba(229,156,15,.4);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(229,156,15,.08);
+    }
+    .sk-icon { font-size: 1.4rem; margin-bottom: .7rem; }
+    .sk-name { font-size: .88rem; font-weight: 600; color: var(--text); margin-bottom: .35rem; }
+    .sk-desc { font-size: .76rem; color: var(--muted); line-height: 1.65; }
+    .sk-bar {
+      margin-top: .85rem;
+      height: 2px;
+      background: var(--surface2);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .sk-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--amber), var(--amber-light));
+      width: 0;
+      border-radius: 2px;
+      transition: width 1.3s cubic-bezier(.22,1,.36,1);
+    }
+
+    /* ─── PROJECTS ─── */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .25s, transform .25s;
+    }
+    .proj-card:hover { border-color: rgba(229,156,15,.4); transform: translateY(-5px); }
+    .proj-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--amber), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s;
+    }
+    .proj-card:hover::after { transform: scaleX(1); }
+    /* ambient glow on hover */
+    .proj-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--amber-glow);
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+    }
+    .proj-card:hover::before { opacity: 1; }
+    .proj-label {
+      font-family: var(--font-m);
+      font-size: .64rem;
+      color: var(--amber);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: .65rem;
+    }
+    .proj-title {
+      font-family: var(--font-d);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: .7rem;
+      line-height: 1.3;
+    }
+    .proj-desc { font-size: .82rem; color: var(--muted); line-height: 1.72; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 1rem; }
+
+    /* ─── BLOG ─── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .blog-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      text-decoration: none;
+      display: block;
+      transition: border-color .25s, transform .25s;
+    }
+    .blog-card:hover { border-color: rgba(229,156,15,.4); transform: translateY(-5px); }
+    .blog-date {
+      font-family: var(--font-m);
+      font-size: .64rem;
+      color: var(--amber);
+      letter-spacing: .15em;
+      margin-bottom: .65rem;
+    }
+    .blog-title {
+      font-family: var(--font-d);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: .6rem;
+      line-height: 1.32;
+    }
+    .blog-excerpt { font-size: .8rem; color: var(--muted); line-height: 1.7; }
+    .blog-read {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      margin-top: 1rem;
+      font-size: .74rem;
+      color: var(--amber);
+      font-weight: 500;
+      transition: gap .2s;
+    }
+    .blog-card:hover .blog-read { gap: .6rem; }
+
+    /* ─── CONTACT ─── */
+    #contact { text-align: center; }
+    #contact .sec-label, #contact .sec-title { text-align: center; }
+    .contact-sub {
+      color: var(--muted);
+      max-width: 520px;
+      margin: -1.5rem auto 2.8rem;
+      font-size: .9rem;
+      line-height: 1.75;
+    }
+    .contact-email {
+      display: inline-block;
+      font-family: var(--font-d);
+      font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--amber);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(229,156,15,.4);
+      padding-bottom: .25rem;
+      margin-bottom: 3rem;
+      transition: color .2s, border-color .2s;
+    }
+    .contact-email:hover { color: var(--amber-light); border-color: var(--amber-light); }
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .soc {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .76rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: color .2s;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+    }
+    .soc:hover { color: var(--amber); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer p { font-size: .72rem; color: var(--muted); }
+    .f-logo { font-family: var(--font-d); font-size: 1.3rem; color: var(--amber); font-weight: 600; }
+    .f-mono { font-family: var(--font-m); font-size: .65rem; color: var(--muted); }
+
+    /* ─── KEYFRAMES ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; } 50% { opacity: .25; }
+    }
+    @keyframes widthPulse {
+      0%, 100% { opacity: .4; } 50% { opacity: 1; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 1.1rem 1.8rem; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(13,11,8,.97);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        z-index: 199;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links.open a { font-size: 1.1rem; }
+      .hamburger { display: flex; }
+
+      .hero-content { padding: 0 1.8rem; }
+      .scroll-hint { left: 1.8rem; }
+      .sec-wrap { padding: 5rem 1.8rem; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 2.8rem; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .blog-grid { grid-template-columns: 1fr; }
+      footer { padding: 1.5rem 1.8rem; flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 560px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║            NAV               ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <nav>
+    <a class="nav-logo" href="#hero">MR.</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Writing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║            HERO              ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <section id="hero">
+    <canvas id="three-canvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Available for new opportunities
+      </div>
+      <h1 class="hero-name">Mahendra<br><em>Rao.</em></h1>
+      <p class="hero-tagline">"Turning system noise into customer confidence — one signal at a time."</p>
+      <div class="hero-cta">
+        <a href="#experience" class="btn-primary">My Journey</a>
+        <a href="#contact" class="btn-secondary">Let's Connect</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-hint-line"></div>
+      <span>scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║           ABOUT              ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <div class="sec-wrap" id="about">
+    <p class="sec-label r">// 01 — About</p>
+    <h2 class="sec-title r">The person<br><em>behind the uptime.</em></h2>
+    <div class="about-grid">
+      <div>
+        <p class="about-p r">I'm a <strong>Technical Support and Customer Success professional</strong> with over <strong>11 years of experience</strong> working at the intersection of complex distributed systems and the people who depend on them.</p>
+        <p class="about-p r">I specialize in <strong>observability, APM, and cloud infrastructure</strong> — helping enterprise customers move from reactive firefighting to proactive intelligence. Whether tracing a latency anomaly through OpenTelemetry pipelines or translating a Kubernetes crash loop into a board-level risk narrative, I bridge engineering depth with business impact.</p>
+        <p class="about-p r">Most recently at <strong>Middleware.io</strong>, I led technical support and customer success for an observability-first SaaS platform — becoming the go-to escalation point for enterprise accounts running telemetry at scale. Before that, I drove technical operations at <strong>Ola Electric</strong> and enterprise customer success at <strong>Sprinklr</strong>.</p>
+        <div class="stats-row">
+          <div class="stat r">
+            <div class="stat-n">11+</div>
+            <div class="stat-l">Years in the field</div>
+          </div>
+          <div class="stat r">
+            <div class="stat-n">3</div>
+            <div class="stat-l">Industry verticals</div>
+          </div>
+          <div class="stat r">
+            <div class="stat-n">∞</div>
+            <div class="stat-l">Incidents resolved</div>
+          </div>
+          <div class="stat r">
+            <div class="stat-n">0</div>
+            <div class="stat-l">Escalations left unsolved</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-cards">
+        <div class="acard r">
+          <h3>Core Expertise</h3>
+          <div class="tags">
+            <span class="tag">Observability</span>
+            <span class="tag">OpenTelemetry</span>
+            <span class="tag">APM</span>
+            <span class="tag">Kubernetes</span>
+            <span class="tag">GCP / GKE</span>
+            <span class="tag">Linux</span>
+            <span class="tag">TCP/IP</span>
+            <span class="tag">DNS</span>
+            <span class="tag">HTTP/S</span>
+          </div>
+        </div>
+        <div class="acard r">
+          <h3>What I Bring</h3>
+          <div class="tags">
+            <span class="tag">Customer Success</span>
+            <span class="tag">Incident Management</span>
+            <span class="tag">Root Cause Analysis</span>
+            <span class="tag">Technical Escalation</span>
+            <span class="tag">Cross-functional Leadership</span>
+          </div>
+        </div>
+        <div class="acard r">
+          <h3>Currently Exploring</h3>
+          <div class="tags">
+            <span class="tag">Google Cloud TSE</span>
+            <span class="tag">Solutions Engineering</span>
+            <span class="tag">AI/ML Observability</span>
+            <span class="tag">Cloud Architecture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║         EXPERIENCE           ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <div class="sec-wrap" id="experience">
+    <p class="sec-label r">// 02 — Experience</p>
+    <h2 class="sec-title r">Where I've<br><em>built my craft.</em></h2>
+    <div class="timeline">
+
+      <div class="titem r">
+        <div class="t-period">2023 — Dec 2025</div>
+        <div class="t-company">Middleware.io</div>
+        <div class="t-role">Technical Support Engineer · Customer Success</div>
+        <p class="t-desc">
+          Owned end-to-end technical support and customer success for an observability-first SaaS platform. Worked cross-functionally with engineering to resolve complex APM and distributed tracing challenges, drove product adoption across enterprise accounts, and built internal runbooks that measurably reduced MTTR. Became the primary escalation point for customers instrumenting production environments with OpenTelemetry at scale.
+        </p>
+        <div class="t-tags">
+          <span class="tag">OpenTelemetry</span>
+          <span class="tag">APM</span>
+          <span class="tag">Distributed Tracing</span>
+          <span class="tag">Customer Success</span>
+          <span class="tag">SaaS</span>
+        </div>
+      </div>
+
+      <div class="titem r">
+        <div class="t-period">2021 — 2023</div>
+        <div class="t-company">Ola Electric</div>
+        <div class="t-role">Technical Support Lead</div>
+        <p class="t-desc">
+          Led technical support operations at one of India's fastest-scaling EV companies. Built escalation frameworks and knowledge-base infrastructure from scratch in a high-velocity environment. Collaborated closely with product and engineering teams to channel field intelligence into actionable product improvements, ensuring high customer satisfaction while navigating rapid product evolution.
+        </p>
+        <div class="t-tags">
+          <span class="tag">Technical Support</span>
+          <span class="tag">Escalation Management</span>
+          <span class="tag">Process Design</span>
+          <span class="tag">Knowledge Base</span>
+        </div>
+      </div>
+
+      <div class="titem r">
+        <div class="t-period">Earlier · Sprinklr</div>
+        <div class="t-company">Sprinklr</div>
+        <div class="t-role">Customer Success · Technical Support</div>
+        <p class="t-desc">
+          Delivered enterprise-grade customer success and technical support for a unified CXM platform trusted by Fortune 500 brands. Developed deep expertise in SaaS support operations, SLA management, and translating complex technical issues into clear executive-level narratives. Acted as a strategic bridge between customer stakeholders and Sprinklr engineering during high-priority escalations.
+        </p>
+        <div class="t-tags">
+          <span class="tag">Enterprise SaaS</span>
+          <span class="tag">CXM</span>
+          <span class="tag">SLA Management</span>
+          <span class="tag">Fortune 500</span>
+          <span class="tag">Strategic Success</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║           SKILLS             ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <div class="sec-wrap" id="skills">
+    <p class="sec-label r">// 03 — Skills</p>
+    <h2 class="sec-title r">Tools of<br><em>the trade.</em></h2>
+    <div class="skills-grid">
+
+      <div class="sk-card r">
+        <div class="sk-icon">📡</div>
+        <div class="sk-name">Observability & APM</div>
+        <div class="sk-desc">End-to-end telemetry — metrics, logs, traces. Deep expertise in OpenTelemetry, Prometheus, and distributed tracing pipelines at enterprise scale.</div>
+        <div class="sk-bar"><div class="sk-fill" data-w="93"></div></div>
+      </div>
+
+      <div class="sk-card r">
+        <div class="sk-icon">☁️</div>
+        <div class="sk-name">Google Cloud Platform</div>
+        <div class="sk-desc">GCE, GKE, Cloud Run, Cloud Logging & Monitoring. Comfortable across the full Compute stack and cloud-native architecture patterns.</div>
+        <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div>
+      </div>
+
+      <div class="sk-card r">
+        <div class="sk-icon">🐳</div>
+        <div class="sk-name">Kubernetes</div>
+        <div class="sk-desc">Pod debugging, resource constraints, HPA, PVCs, node affinity. Skilled at diagnosing cluster-level issues and making them legible to non-technical stakeholders.</div>
+        <div class="sk-bar"><div class="sk-fill" data-w="83"></div></div>
+      </div>
+
+      <div class="sk-card r">
+        <div class="sk-icon">🐧</div>
+        <div class="sk-name">Linux Systems</div>
+        <div class="sk-desc">Performance analysis, process management, filesystem diagnostics, systemd, cgroups, kernel parameters. Comfortable operating in production environments.</div>
+        <div class="sk-bar"><div class="sk-fill" data-w="88"></div></div>
+      </div>
+
+      <div class="sk-card r">
+        <div class="sk-icon">🌐</div>
+        <div class="sk-name">Networking</div>
+        <div class="sk-desc">TCP/IP, DNS, HTTP/S, TLS, VPCs, load balancers, firewalls. Can trace a packet from browser to backend — and explain why it got dropped.</div>
+        <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div>
+      </div>
+
+      <div class="sk-card r">
+        <div class="sk-icon">🤝</div>
+        <div class="sk-name">Customer Success</div>
+        <div class="sk-desc">QBRs, adoption metrics, churn prevention, escalation leadership. Proven track record of turning at-risk enterprise accounts into long-term champions.</div>
+        <div class="sk-bar"><div class="sk-fill" data-w="96"></div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║       PROJECTS               ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <div class="sec-wrap" id="projects">
+    <p class="sec-label r">// 04 — Projects & Achievements</p>
+    <h2 class="sec-title r">Work that<br><em>moved the needle.</em></h2>
+    <div class="proj-grid">
+
+      <div class="proj-card r">
+        <div class="proj-label">Observability · Middleware.io</div>
+        <div class="proj-title">Zero-to-OpenTelemetry Enterprise Onboarding</div>
+        <p class="proj-desc">Designed and executed a structured onboarding program for enterprise customers adopting OpenTelemetry from scratch. Reduced time-to-value from weeks to days by building instrumentation guides, debug runbooks, and live troubleshooting playbooks for Go, Python, and Node.js stacks.</p>
+        <div class="proj-tags">
+          <span class="tag">OpenTelemetry</span><span class="tag">Onboarding</span><span class="tag">Time-to-Value</span>
+        </div>
+      </div>
+
+      <div class="proj-card r">
+        <div class="proj-label">Process Design · Ola Electric</div>
+        <div class="proj-title">Escalation Framework Built from Ground Zero</div>
+        <p class="proj-desc">Built a tiered escalation framework and knowledge infrastructure at a company scaling at breakneck speed. Defined SLAs, trained L1/L2 agents, and created engineering feedback loops that led to measurable reduction in repeat incidents across the product lifecycle.</p>
+        <div class="proj-tags">
+          <span class="tag">Escalation Design</span><span class="tag">SLA</span><span class="tag">Training</span>
+        </div>
+      </div>
+
+      <div class="proj-card r">
+        <div class="proj-label">Enterprise Success · Sprinklr</div>
+        <div class="proj-title">Fortune 500 Account Success Program</div>
+        <p class="proj-desc">Managed strategic success programs for Fortune 500 accounts on the Sprinklr CXM platform. Delivered impactful QBRs, drove feature adoption, and acted as the technical-business bridge during critical escalations — converting at-risk relationships into multi-year renewals.</p>
+        <div class="proj-tags">
+          <span class="tag">QBR</span><span class="tag">Adoption</span><span class="tag">Renewal</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║            BLOG              ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <div class="sec-wrap" id="blog">
+    <p class="sec-label r">// 05 — Writing</p>
+    <h2 class="sec-title r">Thoughts on<br><em>the craft.</em></h2>
+    <div class="blog-grid">
+
+      <a href="#" class="blog-card r">
+        <div class="blog-date">Coming Soon</div>
+        <div class="blog-title">OpenTelemetry in Production: What Nobody Tells You</div>
+        <p class="blog-excerpt">Lessons from instrumenting real production systems — the gotchas, the sampling edge cases, and why your traces are probably lying to you.</p>
+        <span class="blog-read">Read more →</span>
+      </a>
+
+      <a href="#" class="blog-card r">
+        <div class="blog-date">Coming Soon</div>
+        <div class="blog-title">Customer Success is Just Debugging at a Higher Layer</div>
+        <p class="blog-excerpt">The same systematic thinking that helps you trace a latency spike can diagnose why an enterprise customer is silently drifting toward churn.</p>
+        <span class="blog-read">Read more →</span>
+      </a>
+
+      <a href="#" class="blog-card r">
+        <div class="blog-date">Coming Soon</div>
+        <div class="blog-title">The Kubernetes Debugging Playbook I Wish Existed on Day One</div>
+        <p class="blog-excerpt">A field-tested guide to pod failures, resource starvation, and network black holes — written from a support engineer's perspective.</p>
+        <span class="blog-read">Read more →</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║          CONTACT             ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <div class="sec-wrap" id="contact">
+    <p class="sec-label r">// 06 — Contact</p>
+    <h2 class="sec-title r">Let's build<br><em>something together.</em></h2>
+    <p class="contact-sub r">Open to Lead Roles, DevOps Engineer, SRE, Solutions Engineer, Customer Success, and Cloud TSE roles — especially in observability, cloud infrastructure, or enterprise SaaS.</p>
+    <a href="mailto:nkneelkumar@gmail.com" class="contact-email r">nkneelkumar@gmail.com</a>
+    <div class="socials r">
+      <a href="https://www.linkedin.com/in/mahendra-rao/" class="soc">↗ LinkedIn</a>
+      <a href="https://github.com/MahendraRao" class="soc">↗ GitHub</a>
+      <a href="https://x.com/MahendraRao14" class="soc">↗ Twitter / X</a>
+      <a href="https://drive.google.com/file/d/1ejShyAYPAr9i8rvmEl_e0GyW-4CUmGBv/view?usp=sharing" class="soc">↗ Resume</a>
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════╗ -->
+  <!-- ║           FOOTER             ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <footer>
+    <span class="f-logo">MR.</span>
+    <p>© 2025 Mahendra Rao · Made with intention</p>
+    <span class="f-mono">Bengaluru, India</span>
+  </footer>
+
+
+  <script>
+  // ══════════════════════════════════════════════
+  //  THREE.JS — 3D hero background
+  // ══════════════════════════════════════════════
+  (function () {
+    const canvas = document.getElementById('three-canvas');
+    const W = () => canvas.offsetWidth;
+    const H = () => canvas.offsetHeight;
+
+    const scene    = new THREE.Scene();
+    const camera   = new THREE.PerspectiveCamera(55, W() / H(), 0.1, 100);
+    camera.position.z = 7;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(W(), H());
+
+    // — Particles field
+    const pGeo = new THREE.BufferGeometry();
+    const N = 700;
+    const pos = new Float32Array(N * 3);
+    for (let i = 0; i < N * 3; i++) pos[i] = (Math.random() - .5) * 24;
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    const pMat = new THREE.PointsMaterial({ color: 0xe59c0f, size: .045, transparent: true, opacity: .45 });
+    scene.add(new THREE.Points(pGeo, pMat));
+
+    // — Large wireframe icosahedron (right)
+    const iGeo  = new THREE.IcosahedronGeometry(2.6, 1);
+    const iWire = new THREE.WireframeGeometry(iGeo);
+    const iMesh = new THREE.LineSegments(iWire, new THREE.LineBasicMaterial({ color: 0xe59c0f, transparent: true, opacity: .17 }));
+    iMesh.position.set(4.5, .5, 0);
+    scene.add(iMesh);
+
+    // — Smaller octahedron (left-bottom)
+    const oGeo  = new THREE.OctahedronGeometry(1.3, 0);
+    const oWire = new THREE.WireframeGeometry(oGeo);
+    const oMesh = new THREE.LineSegments(oWire, new THREE.LineBasicMaterial({ color: 0xf5bc45, transparent: true, opacity: .22 }));
+    oMesh.position.set(-4.5, -2, -1);
+    scene.add(oMesh);
+
+    // — Tiny torus knot far back
+    const tkGeo  = new THREE.TorusKnotGeometry(.9, .28, 80, 12);
+    const tkWire = new THREE.WireframeGeometry(tkGeo);
+    const tkMesh = new THREE.LineSegments(tkWire, new THREE.LineBasicMaterial({ color: 0xe59c0f, transparent: true, opacity: .1 }));
+    tkMesh.position.set(1.5, 2.8, -3);
+    scene.add(tkMesh);
+
+    // — Mouse parallax
+    let mx = 0, my = 0;
+    document.addEventListener('mousemove', e => {
+      mx = (e.clientX / innerWidth  - .5) * 2;
+      my = (e.clientY / innerHeight - .5) * 2;
+    });
+
+    let t = 0;
+    function tick() {
+      requestAnimationFrame(tick);
+      t += .004;
+      iMesh.rotation.x  =  t * .35 + my * .08;
+      iMesh.rotation.y  =  t * .55 + mx * .08;
+      oMesh.rotation.x  = -t * .4;
+      oMesh.rotation.y  =  t * .6;
+      tkMesh.rotation.x =  t * .25;
+      tkMesh.rotation.z =  t * .18;
+      // gentle camera drift
+      camera.position.x += (mx * .25 - camera.position.x) * .04;
+      camera.position.y += (-my * .18 - camera.position.y) * .04;
+      renderer.render(scene, camera);
+    }
+    tick();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = W() / H();
+      camera.updateProjectionMatrix();
+      renderer.setSize(W(), H());
+    });
+  })();
+
+  // ══════════════════════════════════════════════
+  //  SCROLL REVEAL
+  // ══════════════════════════════════════════════
+  (function () {
+    // stagger siblings inside grids
+    ['skills-grid','proj-grid','blog-grid','about-cards','stats-row'].forEach(cls => {
+      document.querySelectorAll('.' + cls).forEach(grid => {
+        [...grid.querySelectorAll('.r')].forEach((el, i) => {
+          el.style.transitionDelay = (i * .09) + 's';
+        });
+      });
+    });
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('on');
+          // animate skill bars inside
+          e.target.querySelectorAll('.sk-fill').forEach(bar => {
+            bar.style.width = bar.dataset.w + '%';
+          });
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: .14 });
+
+    document.querySelectorAll('.r').forEach(el => io.observe(el));
+  })();
+
+  // ══════════════════════════════════════════════
+  //  HAMBURGER
+  // ══════════════════════════════════════════════
+  (function () {
+    const btn   = document.getElementById('hamburger');
+    const links = document.getElementById('navLinks');
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('open');
+      links.classList.toggle('open');
+    });
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        btn.classList.remove('open');
+        links.classList.remove('open');
+      });
+    });
+  })();
+  </script>
+
+</body>
+</html>
