@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mahendra Rao — Observability & Customer Success</title>
+  <title>Mahendra Rao — DevOps · SRE · Observability</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Sora:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -120,7 +120,6 @@
       width: 100%; height: 100%;
       z-index: 0;
     }
-    /* amber radial glow behind content */
     #hero::after {
       content: '';
       position: absolute;
@@ -451,6 +450,9 @@
       position: relative;
       overflow: hidden;
       transition: border-color .25s, transform .25s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
     .proj-card:hover { border-color: rgba(229,156,15,.4); transform: translateY(-5px); }
     .proj-card::after {
@@ -464,7 +466,6 @@
       transition: transform .3s;
     }
     .proj-card:hover::after { transform: scaleX(1); }
-    /* ambient glow on hover */
     .proj-card::before {
       content: '';
       position: absolute;
@@ -482,6 +483,26 @@
       letter-spacing: .16em;
       text-transform: uppercase;
       margin-bottom: .65rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .proj-badge {
+      font-family: var(--font-m);
+      font-size: .58rem;
+      padding: .18rem .55rem;
+      border-radius: 20px;
+      letter-spacing: .1em;
+    }
+    .proj-badge.live {
+      background: rgba(34,197,94,.12);
+      border: 1px solid rgba(34,197,94,.3);
+      color: #4ade80;
+    }
+    .proj-badge.soon {
+      background: var(--amber-dim);
+      border: 1px solid rgba(229,156,15,.25);
+      color: var(--amber);
     }
     .proj-title {
       font-family: var(--font-d);
@@ -493,6 +514,18 @@
     }
     .proj-desc { font-size: .82rem; color: var(--muted); line-height: 1.72; }
     .proj-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 1rem; }
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      margin-top: 1.1rem;
+      font-size: .72rem;
+      color: var(--amber);
+      font-family: var(--font-m);
+      letter-spacing: .06em;
+      transition: gap .2s;
+    }
+    .proj-card:hover .proj-link { gap: .6rem; }
 
     /* ─── BLOG ─── */
     .blog-grid {
@@ -680,7 +713,7 @@
     <div class="hero-content">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        Available for new opportunities
+        Open to DevOps · SRE · Cloud TSE roles
       </div>
       <h1 class="hero-name">Mahendra<br><em>Rao.</em></h1>
       <p class="hero-tagline">"Turning system noise into customer confidence — one signal at a time."</p>
@@ -700,63 +733,65 @@
   <!-- ╚══════════════════════════════╝ -->
   <div class="sec-wrap" id="about">
     <p class="sec-label r">// 01 — About</p>
-    <h2 class="sec-title r">The person<br><em>behind the uptime.</em></h2>
+    <h2 class="sec-title r">The engineer<br><em>behind the uptime.</em></h2>
     <div class="about-grid">
       <div>
-        <p class="about-p r">I'm a <strong>Technical Support and Customer Success professional</strong> with over <strong>11 years of experience</strong> working at the intersection of complex distributed systems and the people who depend on them.</p>
-        <p class="about-p r">I specialize in <strong>observability, APM, and cloud infrastructure</strong> — helping enterprise customers move from reactive firefighting to proactive intelligence. Whether tracing a latency anomaly through OpenTelemetry pipelines or translating a Kubernetes crash loop into a board-level risk narrative, I bridge engineering depth with business impact.</p>
-        <p class="about-p r">Most recently at <strong>Middleware.io</strong>, I led technical support and customer success for an observability-first SaaS platform — becoming the go-to escalation point for enterprise accounts running telemetry at scale. Before that, I drove technical operations at <strong>Ola Electric</strong> and enterprise customer success at <strong>Sprinklr</strong>.</p>
+        <p class="about-p r">I'm a <strong>DevOps & SRE professional</strong> with over <strong>11 years of experience</strong> operating production-grade SaaS platforms, cloud-native infrastructure, and B2B API ecosystems — at the precise intersection where engineering depth meets customer trust.</p>
+        <p class="about-p r">I specialize in <strong>Kubernetes, CI/CD automation, OpenTelemetry-based observability, and incident ownership</strong> — helping teams move from reactive firefighting to proactive platform intelligence. Whether designing a GitHub Actions pipeline to GCP Cloud Run, debugging a latency anomaly through distributed traces, or translating a crash-loop backtrace into a board-level risk narrative, I bridge deep technical craft with business impact.</p>
+        <p class="about-p r">Most recently at <strong>Middleware.io</strong>, I owned end-to-end observability support for 50+ enterprise accounts — becoming the primary escalation point for complex APM, trace, and metric debugging. Before that, I built CI/CD pipelines and led a 24/7 L3 SRE team at <strong>Ola Electric</strong>, and delivered Fortune 500 technical account success at <strong>Sprinklr</strong>.</p>
         <div class="stats-row">
           <div class="stat r">
             <div class="stat-n">11+</div>
             <div class="stat-l">Years in the field</div>
           </div>
           <div class="stat r">
-            <div class="stat-n">3</div>
-            <div class="stat-l">Industry verticals</div>
+            <div class="stat-n">35%</div>
+            <div class="stat-l">MTTR reduction at Middleware</div>
           </div>
           <div class="stat r">
-            <div class="stat-n">∞</div>
-            <div class="stat-l">Incidents resolved</div>
+            <div class="stat-n">40%</div>
+            <div class="stat-l">Deploy velocity gain at Ola</div>
           </div>
           <div class="stat r">
-            <div class="stat-n">0</div>
-            <div class="stat-l">Escalations left unsolved</div>
+            <div class="stat-n">50+</div>
+            <div class="stat-l">Enterprise accounts owned</div>
           </div>
         </div>
       </div>
       <div class="about-cards">
         <div class="acard r">
-          <h3>Core Expertise</h3>
+          <h3>Core Stack</h3>
           <div class="tags">
-            <span class="tag">Observability</span>
-            <span class="tag">OpenTelemetry</span>
-            <span class="tag">APM</span>
             <span class="tag">Kubernetes</span>
             <span class="tag">GCP / GKE</span>
+            <span class="tag">Docker</span>
+            <span class="tag">OpenTelemetry</span>
+            <span class="tag">Prometheus</span>
+            <span class="tag">Grafana</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Azure DevOps</span>
             <span class="tag">Linux</span>
-            <span class="tag">TCP/IP</span>
-            <span class="tag">DNS</span>
-            <span class="tag">HTTP/S</span>
           </div>
         </div>
         <div class="acard r">
-          <h3>What I Bring</h3>
+          <h3>SRE & DevOps Practices</h3>
           <div class="tags">
-            <span class="tag">Customer Success</span>
             <span class="tag">Incident Management</span>
-            <span class="tag">Root Cause Analysis</span>
-            <span class="tag">Technical Escalation</span>
-            <span class="tag">Cross-functional Leadership</span>
+            <span class="tag">RCA / Post-mortems</span>
+            <span class="tag">SLO / SLI</span>
+            <span class="tag">CI/CD Pipelines</span>
+            <span class="tag">On-call Ownership</span>
+            <span class="tag">IaC (Terraform)</span>
           </div>
         </div>
         <div class="acard r">
-          <h3>Currently Exploring</h3>
+          <h3>Currently Targeting</h3>
           <div class="tags">
             <span class="tag">Google Cloud TSE</span>
+            <span class="tag">DevOps Engineer</span>
+            <span class="tag">SRE</span>
             <span class="tag">Solutions Engineering</span>
-            <span class="tag">AI/ML Observability</span>
-            <span class="tag">Cloud Architecture</span>
+            <span class="tag">Platform Engineering</span>
           </div>
         </div>
       </div>
@@ -772,49 +807,93 @@
     <div class="timeline">
 
       <div class="titem r">
-        <div class="t-period">2023 — Dec 2025</div>
+        <div class="t-period">March 2025 — December 2025</div>
         <div class="t-company">Middleware.io</div>
-        <div class="t-role">Technical Support Engineer · Customer Success</div>
+        <div class="t-role">Technical Support Engineer · Cloud Observability</div>
         <p class="t-desc">
-          Owned end-to-end technical support and customer success for an observability-first SaaS platform. Worked cross-functionally with engineering to resolve complex APM and distributed tracing challenges, drove product adoption across enterprise accounts, and built internal runbooks that measurably reduced MTTR. Became the primary escalation point for customers instrumenting production environments with OpenTelemetry at scale.
+          Owned production observability and troubleshooting for 50+ global enterprise accounts across APM, logs, metrics, traces, and RUM. Debugged complex distributed systems — latency spikes, CPU/memory pressure, trace gaps — using OpenTelemetry, Prometheus, and Grafana, reducing MTTR by 35%. Reproduced customer workloads in Node.js, Python, Kubernetes, and Cloud Run to isolate root causes and drive engineering fixes. Translated production issues into actionable product feedback, directly influencing the OpsAI and Continuous Profiling roadmap. Authored technical runbooks and best-practice guides that improved customer self-service and platform stability.
         </p>
         <div class="t-tags">
           <span class="tag">OpenTelemetry</span>
           <span class="tag">APM</span>
           <span class="tag">Distributed Tracing</span>
-          <span class="tag">Customer Success</span>
-          <span class="tag">SaaS</span>
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">Cloud Run</span>
+          <span class="tag">Python</span>
+          <span class="tag">Node.js</span>
         </div>
       </div>
 
       <div class="titem r">
-        <div class="t-period">2021 — 2023</div>
+        <div class="t-period">April 2023 — February 2025</div>
+        <div class="t-company">Career Development & Upskilling</div>
+        <div class="t-role">Full-time parent · Active upskilling in DevOps & Cloud</div>
+        <p class="t-desc">
+          Took a planned career break for full-time parenting while actively building hands-on DevOps skills. Shipped GitHub Actions pipelines deploying to GCP Cloud Run, built Prometheus/Grafana monitoring stacks with Slack-integrated alerting, and practiced infrastructure-as-code with Terraform and Docker Compose. Pursued Microsoft Power BI Data Analyst certification (completed) and progressed toward Google Cloud Professional DevOps Engineer, CKA, and CKAD.
+        </p>
+        <div class="t-tags">
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">GCP Cloud Run</span>
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Terraform</span>
+          <span class="tag">Kubernetes</span>
+        </div>
+      </div>
+
+      <div class="titem r">
+        <div class="t-period">April 2022 — April 2023</div>
         <div class="t-company">Ola Electric</div>
-        <div class="t-role">Technical Support Lead</div>
+        <div class="t-role">L3 Product Support Engineer · SRE / DevOps</div>
         <p class="t-desc">
-          Led technical support operations at one of India's fastest-scaling EV companies. Built escalation frameworks and knowledge-base infrastructure from scratch in a high-velocity environment. Collaborated closely with product and engineering teams to channel field intelligence into actionable product improvements, ensuring high customer satisfaction while navigating rapid product evolution.
+          Owned production reliability and incident response for an OTA vehicle software platform running large-scale 24/7 deployments. Designed CI/CD pipelines on Azure DevOps — improving deployment velocity by 40% and cutting manual release steps by 80%. Built observability dashboards across Grafana, Dynatrace, and Splunk, and managed API Gateway integrations via Apigee. Led incident management and RCA workflows, reducing MTTR by 40% through automated runbooks and post-mortem process improvements. Scaled and mentored the 24/7 L3 support team from 7 to 20 engineers — establishing on-call rotations, SLA frameworks, and training programs.
         </p>
         <div class="t-tags">
-          <span class="tag">Technical Support</span>
-          <span class="tag">Escalation Management</span>
-          <span class="tag">Process Design</span>
-          <span class="tag">Knowledge Base</span>
+          <span class="tag">Azure DevOps</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">Dynatrace</span>
+          <span class="tag">Splunk</span>
+          <span class="tag">Apigee</span>
+          <span class="tag">SRE</span>
+          <span class="tag">Incident Management</span>
+          <span class="tag">RCA</span>
         </div>
       </div>
 
       <div class="titem r">
-        <div class="t-period">Earlier · Sprinklr</div>
+        <div class="t-period">May 2019 — April 2022</div>
         <div class="t-company">Sprinklr</div>
-        <div class="t-role">Customer Success · Technical Support</div>
+        <div class="t-role">Technical Account Manager (TAM)</div>
         <p class="t-desc">
-          Delivered enterprise-grade customer success and technical support for a unified CXM platform trusted by Fortune 500 brands. Developed deep expertise in SaaS support operations, SLA management, and translating complex technical issues into clear executive-level narratives. Acted as a strategic bridge between customer stakeholders and Sprinklr engineering during high-priority escalations.
+          Served as technical SPOC for Fortune 500 enterprise accounts — Apple, Microsoft, Dell, Samsung, UBS — maintaining 95%+ CSAT. Led B2B API integrations across Salesforce, Slack, Zendesk, and Adobe Analytics, ensuring zero-downtime migrations. Managed a GetSatisfaction → Sprinklr Communities platform migration with SSO/SAML configurations for 100K+ users. Conducted RCAs for critical incidents, mentored junior engineers, and improved operational best practices across the team.
         </p>
         <div class="t-tags">
+          <span class="tag">Salesforce API</span>
+          <span class="tag">OAuth2 / SAML</span>
+          <span class="tag">B2B Integrations</span>
+          <span class="tag">SSO</span>
           <span class="tag">Enterprise SaaS</span>
-          <span class="tag">CXM</span>
-          <span class="tag">SLA Management</span>
           <span class="tag">Fortune 500</span>
-          <span class="tag">Strategic Success</span>
+          <span class="tag">95%+ CSAT</span>
+        </div>
+      </div>
+
+      <div class="titem r">
+        <div class="t-period">2014 — 2019</div>
+        <div class="t-company">Plivo · Movate · IBM · Aditya Birla</div>
+        <div class="t-role">Enterprise APIs · IVR/VoIP · Production Support</div>
+        <p class="t-desc">
+          5 years building a strong foundation across enterprise API support, IVR/VoIP platform operations, and production troubleshooting at scale. Worked across telecom, IT services, and conglomerate verticals — developing the systematic debugging mindset and customer-facing technical depth that powers everything since.
+        </p>
+        <div class="t-tags">
+          <span class="tag">Enterprise APIs</span>
+          <span class="tag">IVR / VoIP</span>
+          <span class="tag">Production Troubleshooting</span>
+          <span class="tag">Telecom</span>
         </div>
       </div>
 
@@ -832,42 +911,63 @@
       <div class="sk-card r">
         <div class="sk-icon">📡</div>
         <div class="sk-name">Observability & APM</div>
-        <div class="sk-desc">End-to-end telemetry — metrics, logs, traces. Deep expertise in OpenTelemetry, Prometheus, and distributed tracing pipelines at enterprise scale.</div>
+        <div class="sk-desc">End-to-end telemetry — metrics, logs, traces, RUM. Deep expertise in OpenTelemetry, Prometheus, Grafana, Dynatrace, New Relic, Splunk, and ELK at enterprise scale.</div>
         <div class="sk-bar"><div class="sk-fill" data-w="93"></div></div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">☁️</div>
         <div class="sk-name">Google Cloud Platform</div>
-        <div class="sk-desc">GCE, GKE, Cloud Run, Cloud Logging & Monitoring. Comfortable across the full Compute stack and cloud-native architecture patterns.</div>
+        <div class="sk-desc">GCE, GKE, Cloud Run, Cloud Logging & Monitoring, IAM. Comfortable across the full Compute stack and cloud-native architecture patterns.</div>
         <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">🐳</div>
         <div class="sk-name">Kubernetes</div>
-        <div class="sk-desc">Pod debugging, resource constraints, HPA, PVCs, node affinity. Skilled at diagnosing cluster-level issues and making them legible to non-technical stakeholders.</div>
+        <div class="sk-desc">Pod debugging, resource constraints, HPA, PVCs, node affinity, DaemonSets. Skilled at diagnosing cluster-level failures and translating them into stakeholder-legible narratives.</div>
         <div class="sk-bar"><div class="sk-fill" data-w="83"></div></div>
+      </div>
+
+      <div class="sk-card r">
+        <div class="sk-icon">⚙️</div>
+        <div class="sk-name">CI/CD & DevOps</div>
+        <div class="sk-desc">GitHub Actions, Azure DevOps, Jenkins. Designed pipelines that cut deployment time by 40% and eliminated 80% of manual release steps at production scale.</div>
+        <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">🐧</div>
         <div class="sk-name">Linux Systems</div>
-        <div class="sk-desc">Performance analysis, process management, filesystem diagnostics, systemd, cgroups, kernel parameters. Comfortable operating in production environments.</div>
+        <div class="sk-desc">Performance analysis, process management, filesystem diagnostics, systemd, cgroups, kernel parameters. Comfortable operating in production at any hour.</div>
         <div class="sk-bar"><div class="sk-fill" data-w="88"></div></div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">🌐</div>
         <div class="sk-name">Networking</div>
-        <div class="sk-desc">TCP/IP, DNS, HTTP/S, TLS, VPCs, load balancers, firewalls. Can trace a packet from browser to backend — and explain why it got dropped.</div>
-        <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div>
+        <div class="sk-desc">TCP/IP, DNS, HTTP/S, TLS, VPCs, load balancers, firewalls. Can trace a packet from browser to backend — and explain exactly where and why it got dropped.</div>
+        <div class="sk-bar"><div class="sk-fill" data-w="86"></div></div>
+      </div>
+
+      <div class="sk-card r">
+        <div class="sk-icon">🐍</div>
+        <div class="sk-name">Python & Scripting</div>
+        <div class="sk-desc">Python for automation, API testing, monitoring integrations, and tooling. Bash for ops scripts, diagnostic pipelines, and environment bootstrapping.</div>
+        <div class="sk-bar"><div class="sk-fill" data-w="78"></div></div>
+      </div>
+
+      <div class="sk-card r">
+        <div class="sk-icon">🔐</div>
+        <div class="sk-name">Security & IAM</div>
+        <div class="sk-desc">OAuth2, OIDC, SAML, SSO. Experience with API Gateway configurations (Apigee), enterprise SSO migrations for 100K+ users, and zero-downtime auth integrations.</div>
+        <div class="sk-bar"><div class="sk-fill" data-w="75"></div></div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">🤝</div>
-        <div class="sk-name">Customer Success</div>
-        <div class="sk-desc">QBRs, adoption metrics, churn prevention, escalation leadership. Proven track record of turning at-risk enterprise accounts into long-term champions.</div>
+        <div class="sk-name">Customer Success & SRE</div>
+        <div class="sk-desc">QBRs, adoption metrics, churn prevention, escalation leadership. Scaled L3 SRE teams from 7→20 engineers. Proven track record of turning at-risk accounts into long-term champions.</div>
         <div class="sk-bar"><div class="sk-fill" data-w="96"></div></div>
       </div>
 
@@ -878,9 +978,87 @@
   <!-- ║       PROJECTS               ║ -->
   <!-- ╚══════════════════════════════╝ -->
   <div class="sec-wrap" id="projects">
-    <p class="sec-label r">// 04 — Projects & Achievements</p>
-    <h2 class="sec-title r">Work that<br><em>moved the needle.</em></h2>
+    <p class="sec-label r">// 04 — Projects & Open Source</p>
+    <h2 class="sec-title r">Things I've<br><em>actually shipped.</em></h2>
     <div class="proj-grid">
+
+      <a href="https://github.com/MahendraRao/mahendra-portfolio" target="_blank" rel="noopener" class="proj-card r">
+        <div class="proj-label">
+          GitHub · HTML / Three.js
+          <span class="proj-badge live">Live</span>
+        </div>
+        <div class="proj-title">This Portfolio</div>
+        <p class="proj-desc">A production-grade personal portfolio site with a Three.js 3D hero, scroll-triggered animations, amber/charcoal dark theme, and full mobile responsiveness. Built from scratch — no templates.</p>
+        <div class="proj-tags">
+          <span class="tag">Three.js</span><span class="tag">CSS Animations</span><span class="tag">Vercel</span>
+        </div>
+        <span class="proj-link">↗ github.com/MahendraRao/mahendra-portfolio</span>
+      </a>
+
+      <a href="https://github.com/MahendraRao/3d-humpty" target="_blank" rel="noopener" class="proj-card r">
+        <div class="proj-label">
+          GitHub · Three.js
+          <span class="proj-badge live">Live</span>
+        </div>
+        <div class="proj-title">3D Humpty — Interactive Character</div>
+        <p class="proj-desc">An interactive 3D character experience built with Three.js. A dancing Humpty Dumpty you can control — built to sharpen my 3D rendering and real-time animation skills in the browser.</p>
+        <div class="proj-tags">
+          <span class="tag">Three.js</span><span class="tag">3D Animation</span><span class="tag">Interactive</span>
+        </div>
+        <span class="proj-link">↗ github.com/MahendraRao/3d-humpty</span>
+      </a>
+
+      <a href="https://github.com/MahendraRao/consciousness" target="_blank" rel="noopener" class="proj-card r">
+        <div class="proj-label">
+          GitHub · HTML / JS
+          <span class="proj-badge live">★ 5 Stars</span>
+        </div>
+        <div class="proj-title">Consciousness</div>
+        <p class="proj-desc">An exploratory creative coding experiment — pushing the boundaries of what pure HTML and JavaScript can express. One of my most starred personal projects.</p>
+        <div class="proj-tags">
+          <span class="tag">Creative Coding</span><span class="tag">HTML Canvas</span><span class="tag">Generative</span>
+        </div>
+        <span class="proj-link">↗ github.com/MahendraRao/consciousness</span>
+      </a>
+
+      <div class="proj-card r">
+        <div class="proj-label">
+          Coming Soon · Shell / Bash
+          <span class="proj-badge soon">In Progress</span>
+        </div>
+        <div class="proj-title">ClawForge Zero</div>
+        <p class="proj-desc">Zero-friction bootstrap and doctor toolkit for OpenClaw/OpenShell workflows. Designed for operators who need environment setup, health checks, smoke testing, config initialization, and support bundle generation — all from a single binary. Built from real field pain.</p>
+        <div class="proj-tags">
+          <span class="tag">Bash</span><span class="tag">CLI Tooling</span><span class="tag">DevOps</span><span class="tag">Bootstrapping</span>
+        </div>
+        <span class="proj-link" style="color:var(--muted)">↗ Coming soon on GitHub</span>
+      </div>
+
+      <div class="proj-card r">
+        <div class="proj-label">
+          Coming Soon · Python / OTEL
+          <span class="proj-badge soon">In Progress</span>
+        </div>
+        <div class="proj-title">OTel Debug Companion</div>
+        <p class="proj-desc">A CLI tool that interrogates your OpenTelemetry pipeline — checking collector health, trace ingestion rates, span drop rates, and SDK configuration — and surfaces actionable diagnostics. The runbook I always wished existed during enterprise escalations.</p>
+        <div class="proj-tags">
+          <span class="tag">OpenTelemetry</span><span class="tag">Python</span><span class="tag">Observability</span><span class="tag">CLI</span>
+        </div>
+        <span class="proj-link" style="color:var(--muted)">↗ Coming soon on GitHub</span>
+      </div>
+
+      <div class="proj-card r">
+        <div class="proj-label">
+          Coming Soon · GitHub Actions
+          <span class="proj-badge soon">In Progress</span>
+        </div>
+        <div class="proj-title">GCP Cloud Run Pipeline Template</div>
+        <p class="proj-desc">A production-ready GitHub Actions workflow template for deploying containerized apps to GCP Cloud Run — with built-in secret management, smoke tests, rollback on failure, and Slack notifications. Built during upskilling, now being polished for open source.</p>
+        <div class="proj-tags">
+          <span class="tag">GitHub Actions</span><span class="tag">GCP</span><span class="tag">Cloud Run</span><span class="tag">Docker</span>
+        </div>
+        <span class="proj-link" style="color:var(--muted)">↗ Coming soon on GitHub</span>
+      </div>
 
       <div class="proj-card r">
         <div class="proj-label">Observability · Middleware.io</div>
@@ -929,15 +1107,15 @@
 
       <a href="#" class="blog-card r">
         <div class="blog-date">Coming Soon</div>
-        <div class="blog-title">Customer Success is Just Debugging at a Higher Layer</div>
-        <p class="blog-excerpt">The same systematic thinking that helps you trace a latency spike can diagnose why an enterprise customer is silently drifting toward churn.</p>
+        <div class="blog-title">The CI/CD Pipeline That Saved 80% of Our Manual Work</div>
+        <p class="blog-excerpt">How we redesigned the OTA software deployment pipeline at Ola Electric — and what most teams get wrong about release velocity vs. release safety.</p>
         <span class="blog-read">Read more →</span>
       </a>
 
       <a href="#" class="blog-card r">
         <div class="blog-date">Coming Soon</div>
         <div class="blog-title">The Kubernetes Debugging Playbook I Wish Existed on Day One</div>
-        <p class="blog-excerpt">A field-tested guide to pod failures, resource starvation, and network black holes — written from a support engineer's perspective.</p>
+        <p class="blog-excerpt">A field-tested guide to pod failures, resource starvation, and network black holes — written from a support engineer's perspective, not a textbook author's.</p>
         <span class="blog-read">Read more →</span>
       </a>
 
@@ -950,13 +1128,13 @@
   <div class="sec-wrap" id="contact">
     <p class="sec-label r">// 06 — Contact</p>
     <h2 class="sec-title r">Let's build<br><em>something together.</em></h2>
-    <p class="contact-sub r">Open to Lead Roles, DevOps Engineer, SRE, Solutions Engineer, Customer Success, and Cloud TSE roles — especially in observability, cloud infrastructure, or enterprise SaaS.</p>
-    <a href="mailto:nkneelkumar@gmail.com" class="contact-email r">nkneelkumar@gmail.com</a>
+    <p class="contact-sub r">Open to <strong style="color:var(--text)">DevOps Engineer, SRE, Cloud TSE, Solutions Engineer</strong>, and Platform Engineering roles — especially in observability, cloud infrastructure, or enterprise SaaS. Based in Bengaluru · Open to remote &amp; hybrid.</p>
+    <a href="mailto:nkneelkumar@gmail.com" class="contact-email r"><span class="__cf_email__" data-cfemail="0b6560656e6e67607e666a794b6c666a626725686466">Contact Me: nkneelkumar@gmail.com</span></a>
     <div class="socials r">
-      <a href="https://www.linkedin.com/in/mahendra-rao/" class="soc">↗ LinkedIn</a>
-      <a href="https://github.com/MahendraRao" class="soc">↗ GitHub</a>
-      <a href="https://x.com/MahendraRao14" class="soc">↗ Twitter / X</a>
-      <a href="https://drive.google.com/file/d/1ejShyAYPAr9i8rvmEl_e0GyW-4CUmGBv/view?usp=sharing" class="soc">↗ Resume</a>
+      <a href="https://www.linkedin.com/in/mahendra-rao/" class="soc" target="_blank" rel="noopener">↗ LinkedIn</a>
+      <a href="https://github.com/MahendraRao" class="soc" target="_blank" rel="noopener">↗ GitHub</a>
+      <a href="https://x.com/MahendraRao14" class="soc" target="_blank" rel="noopener">↗ Twitter / X</a>
+      <a href="https://drive.google.com/file/d/1ejShyAYPAr9i8rvmEl_e0GyW-4CUmGBv/view?usp=sharing" class="soc" target="_blank" rel="noopener">↗ Resume (PDF)</a>
     </div>
   </div>
 
@@ -965,12 +1143,11 @@
   <!-- ╚══════════════════════════════╝ -->
   <footer>
     <span class="f-logo">MR.</span>
-    <p>© 2025 Mahendra Rao · Made with intention</p>
-    <span class="f-mono">Bengaluru, India</span>
+    <p>© 2026 Mahendra Rao · Bengaluru, India · Made with intention</p>
+    <span class="f-mono">devops · sre · observability</span>
   </footer>
 
-
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ══════════════════════════════════════════════
   //  THREE.JS — 3D hero background
   // ══════════════════════════════════════════════
@@ -1034,7 +1211,6 @@
       oMesh.rotation.y  =  t * .6;
       tkMesh.rotation.x =  t * .25;
       tkMesh.rotation.z =  t * .18;
-      // gentle camera drift
       camera.position.x += (mx * .25 - camera.position.x) * .04;
       camera.position.y += (-my * .18 - camera.position.y) * .04;
       renderer.render(scene, camera);
@@ -1050,9 +1226,8 @@
 
   // ══════════════════════════════════════════════
   //  SCROLL REVEAL
-  // ═════════════════════════════���════════════════
+  // ══════════════════════════════════════════════
   (function () {
-    // stagger siblings inside grids
     ['skills-grid','proj-grid','blog-grid','about-cards','stats-row'].forEach(cls => {
       document.querySelectorAll('.' + cls).forEach(grid => {
         [...grid.querySelectorAll('.r')].forEach((el, i) => {
@@ -1065,7 +1240,6 @@
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('on');
-          // animate skill bars inside
           e.target.querySelectorAll('.sk-fill').forEach(bar => {
             bar.style.width = bar.dataset.w + '%';
           });
@@ -1095,6 +1269,5 @@
     });
   })();
   </script>
-
 </body>
 </html>
