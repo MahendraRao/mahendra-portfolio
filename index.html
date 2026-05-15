@@ -1129,7 +1129,7 @@
     <p class="sec-label r">// 06 — Contact</p>
     <h2 class="sec-title r">Let's build<br><em>something together.</em></h2>
     <p class="contact-sub r">Open to <strong style="color:var(--text)">DevOps Engineer, SRE, Cloud TSE, Solutions Engineer</strong>, and Platform Engineering roles — especially in observability, cloud infrastructure, or enterprise SaaS. Based in Bengaluru · Open to remote &amp; hybrid.</p>
-    <a href="/cdn-cgi/l/email-protection#a1cfcacfc4c4cdcad4ccc0d3e1c6ccc0c8cd8fc2cecc" class="contact-email r"><span class="__cf_email__" data-cfemail="0b6560656e6e67607e666a794b6c666a626725686466">[email&#160;protected]</span></a>
+    <a href="#" id="contactEmail" class="contact-email r">nkneelkumar [at] gmail [dot] com</a>
     <div class="socials r">
       <a href="https://www.linkedin.com/in/mahendra-rao/" class="soc" target="_blank" rel="noopener">↗ LinkedIn</a>
       <a href="https://github.com/MahendraRao" class="soc" target="_blank" rel="noopener">↗ GitHub</a>
@@ -1267,6 +1267,20 @@
         links.classList.remove('open');
       });
     });
+  })();
+
+  // ══════════════════════════════════════════════
+  //  EMAIL DECODE — bypasses Cloudflare obfuscation
+  // ══════════════════════════════════════════════
+  (function () {
+    const user   = 'nkneelkumar';
+    const domain = 'gmail.com';
+    const el     = document.getElementById('contactEmail');
+    if (el) {
+      const addr = user + '@' + domain;
+      el.textContent = addr;
+      el.href = 'mailto:' + addr;
+    }
   })();
   </script>
 </body>
