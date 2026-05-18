@@ -399,6 +399,79 @@
     }
     .t-tags { display: flex; flex-wrap: wrap; gap: .38rem; margin-top: .9rem; }
 
+    /* ─── TECH STACK STRIP ─── */
+    .stack-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .stack-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2rem;
+      padding: 1.6rem 1.8rem;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      transition: background .25s;
+    }
+    .stack-row:last-child { border-bottom: none; }
+    .stack-row:hover { background: rgba(229,156,15,.03); }
+    .stack-cat {
+      font-family: var(--font-m);
+      font-size: .7rem;
+      color: var(--amber);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+    }
+    .stack-cat-dot {
+      width: 6px; height: 6px;
+      background: var(--amber);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .stack-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+    }
+    .stack-chip {
+      padding: .35rem .8rem;
+      background: var(--bg);
+      border: 1px solid rgba(229,156,15,.18);
+      border-radius: 4px;
+      font-size: .72rem;
+      color: var(--text);
+      font-family: var(--font-m);
+      letter-spacing: .03em;
+      transition: border-color .2s, color .2s, transform .15s;
+    }
+    .stack-chip:hover {
+      border-color: var(--amber);
+      color: var(--amber-light);
+      transform: translateY(-2px);
+    }
+    .stack-foot {
+      padding: 1.2rem 1.8rem;
+      background: rgba(229,156,15,.04);
+      border-top: 1px solid var(--border);
+      font-family: var(--font-m);
+      font-size: .68rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      flex-wrap: wrap;
+    }
+    .stack-foot strong {
+      color: var(--amber);
+      font-weight: 400;
+    }
+
     /* ─── SKILLS ─── */
     .skills-grid {
       display: grid;
@@ -670,6 +743,14 @@
       .skills-grid { grid-template-columns: 1fr 1fr; }
       .proj-grid { grid-template-columns: 1fr; }
       .blog-grid { grid-template-columns: 1fr; }
+
+      .stack-row {
+        grid-template-columns: 1fr;
+        gap: .8rem;
+        padding: 1.3rem 1.4rem;
+      }
+      .stack-foot { padding: 1rem 1.4rem; }
+
       footer { padding: 1.5rem 1.8rem; flex-direction: column; text-align: center; }
     }
 
@@ -694,6 +775,7 @@
     <a class="nav-logo" href="#hero">MR.</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
+      <li><a href="#stack">Stack</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -799,10 +881,78 @@
   </div>
 
   <!-- ╔══════════════════════════════╗ -->
+  <!-- ║         TECH STACK           ║ -->
+  <!-- ╚══════════════════════════════╝ -->
+  <div class="sec-wrap" id="stack">
+    <p class="sec-label r">// 02 — Tech Stack</p>
+    <h2 class="sec-title r">What I<br><em>build with.</em></h2>
+    <div class="stack-container r">
+
+      <div class="stack-row">
+        <div class="stack-cat"><span class="stack-cat-dot"></span>Infrastructure</div>
+        <div class="stack-chips">
+          <span class="stack-chip">Kubernetes</span>
+          <span class="stack-chip">Docker</span>
+          <span class="stack-chip">GCP (GKE · Cloud Run)</span>
+          <span class="stack-chip">Azure</span>
+          <span class="stack-chip">Terraform</span>
+          <span class="stack-chip">Helm</span>
+          <span class="stack-chip">Linux</span>
+        </div>
+      </div>
+
+      <div class="stack-row">
+        <div class="stack-cat"><span class="stack-cat-dot"></span>CI/CD &amp; Delivery</div>
+        <div class="stack-chips">
+          <span class="stack-chip">GitHub Actions</span>
+          <span class="stack-chip">Azure DevOps</span>
+          <span class="stack-chip">Jenkins</span>
+          <span class="stack-chip">GitOps</span>
+          <span class="stack-chip">Infrastructure as Code</span>
+        </div>
+      </div>
+
+      <div class="stack-row">
+        <div class="stack-cat"><span class="stack-cat-dot"></span>Observability</div>
+        <div class="stack-chips">
+          <span class="stack-chip">OpenTelemetry</span>
+          <span class="stack-chip">Prometheus</span>
+          <span class="stack-chip">Grafana</span>
+          <span class="stack-chip">Middleware.io</span>
+          <span class="stack-chip">Dynatrace</span>
+          <span class="stack-chip">New Relic</span>
+          <span class="stack-chip">Splunk</span>
+          <span class="stack-chip">ELK</span>
+        </div>
+      </div>
+
+      <div class="stack-row">
+        <div class="stack-cat"><span class="stack-cat-dot"></span>Languages</div>
+        <div class="stack-chips">
+          <span class="stack-chip">Python</span>
+          <span class="stack-chip">Bash</span>
+          <span class="stack-chip">TypeScript</span>
+          <span class="stack-chip">Node.js</span>
+          <span class="stack-chip">YAML</span>
+          <span class="stack-chip">JSON</span>
+        </div>
+      </div>
+
+      <div class="stack-foot">
+        <span>// production cloud:</span>
+        <strong>GCP &amp; Azure</strong>
+        <span>· currently learning:</span>
+        <strong>AWS (SAA-C03)</strong>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════╗ -->
   <!-- ║         EXPERIENCE           ║ -->
   <!-- ╚══════════════════════════════╝ -->
   <div class="sec-wrap" id="experience">
-    <p class="sec-label r">// 02 — Experience</p>
+    <p class="sec-label r">// 03 — Experience</p>
     <h2 class="sec-title r">Where I've<br><em>built my craft.</em></h2>
     <div class="timeline">
 
@@ -904,7 +1054,7 @@
   <!-- ║           SKILLS             ║ -->
   <!-- ╚══════════════════════════════╝ -->
   <div class="sec-wrap" id="skills">
-    <p class="sec-label r">// 03 — Skills</p>
+    <p class="sec-label r">// 04 — Skills</p>
     <h2 class="sec-title r">Tools of<br><em>the trade.</em></h2>
     <div class="skills-grid">
 
@@ -978,7 +1128,7 @@
   <!-- ║       PROJECTS               ║ -->
   <!-- ╚══════════════════════════════╝ -->
   <div class="sec-wrap" id="projects">
-    <p class="sec-label r">// 04 — Projects & Open Source</p>
+    <p class="sec-label r">// 05 — Projects & Open Source</p>
     <h2 class="sec-title r">Things I've<br><em>actually shipped.</em></h2>
     <div class="proj-grid">
 
@@ -1094,7 +1244,7 @@
   <!-- ║            BLOG              ║ -->
   <!-- ╚══════════════════════════════╝ -->
   <div class="sec-wrap" id="blog">
-    <p class="sec-label r">// 05 — Writing</p>
+    <p class="sec-label r">// 06 — Writing</p>
     <h2 class="sec-title r">Thoughts on<br><em>the craft.</em></h2>
     <div class="blog-grid">
 
@@ -1126,7 +1276,7 @@
   <!-- ║          CONTACT             ║ -->
   <!-- ╚══════════════════════════════╝ -->
   <div class="sec-wrap" id="contact">
-    <p class="sec-label r">// 06 — Contact</p>
+    <p class="sec-label r">// 07 — Contact</p>
     <h2 class="sec-title r">Let's build<br><em>something together.</em></h2>
     <p class="contact-sub r">Open to <strong style="color:var(--text)">DevOps Engineer, SRE, Cloud TSE, Solutions Engineer</strong>, and Platform Engineering roles — especially in observability, cloud infrastructure, or enterprise SaaS. Based in Bengaluru · Open to remote &amp; hybrid.</p>
     <a href="#" id="contactEmail" class="contact-email r">nkneelkumar [at] gmail [dot] com</a>
