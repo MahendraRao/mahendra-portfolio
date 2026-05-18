@@ -1,32 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mahendra Rao — DevOps · SRE · Observability</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Sora:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Sora:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap"
+    rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <style>
     :root {
-      --bg:          #0d0b08;
-      --surface:     #181410;
-      --surface2:    #201c17;
-      --amber:       #e59c0f;
+      --bg: #0d0b08;
+      --surface: #181410;
+      --surface2: #201c17;
+      --amber: #e59c0f;
       --amber-light: #f5bc45;
-      --amber-dim:   rgba(229,156,15,0.12);
-      --amber-glow:  rgba(229,156,15,0.06);
-      --text:        #ede0cc;
-      --muted:       #7a6e62;
-      --border:      rgba(229,156,15,0.13);
-      --font-d:      'Cormorant Garamond', serif;
-      --font-b:      'Sora', sans-serif;
-      --font-m:      'DM Mono', monospace;
+      --amber-dim: rgba(229, 156, 15, 0.12);
+      --amber-glow: rgba(229, 156, 15, 0.06);
+      --text: #ede0cc;
+      --muted: #7a6e62;
+      --border: rgba(229, 156, 15, 0.13);
+      --font-d: 'Cormorant Garamond', serif;
+      --font-b: 'Sora', sans-serif;
+      --font-m: 'DM Mono', monospace;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background: var(--bg);
       color: var(--text);
@@ -50,17 +63,20 @@
     /* ─── NAV ─── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 200;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1.3rem 5rem;
-      background: rgba(13,11,8,0.82);
+      background: rgba(13, 11, 8, 0.82);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       transition: padding .3s;
     }
+
     .nav-logo {
       font-family: var(--font-d);
       font-size: 1.6rem;
@@ -70,11 +86,13 @@
       text-decoration: none;
       user-select: none;
     }
+
     .nav-links {
       display: flex;
       gap: 2.8rem;
       list-style: none;
     }
+
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
@@ -84,7 +102,10 @@
       text-transform: uppercase;
       transition: color .2s;
     }
-    .nav-links a:hover { color: var(--amber); }
+
+    .nav-links a:hover {
+      color: var(--amber);
+    }
 
     /* hamburger */
     .hamburger {
@@ -94,16 +115,27 @@
       cursor: pointer;
       z-index: 201;
     }
+
     .hamburger span {
       display: block;
-      width: 24px; height: 2px;
+      width: 24px;
+      height: 2px;
       background: var(--amber);
       border-radius: 2px;
       transition: all .3s;
     }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
 
     /* ─── HERO ─── */
     #hero {
@@ -114,18 +146,23 @@
       align-items: center;
       overflow: hidden;
     }
+
     #three-canvas {
       position: absolute;
       inset: 0;
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       z-index: 0;
     }
+
     #hero::after {
       content: '';
       position: absolute;
-      left: -10vw; top: 10%;
-      width: 60vw; height: 70vh;
-      background: radial-gradient(ellipse at 30% 50%, rgba(229,156,15,0.07) 0%, transparent 70%);
+      left: -10vw;
+      top: 10%;
+      width: 60vw;
+      height: 70vh;
+      background: radial-gradient(ellipse at 30% 50%, rgba(229, 156, 15, 0.07) 0%, transparent 70%);
       pointer-events: none;
       z-index: 1;
     }
@@ -136,6 +173,7 @@
       padding: 0 5rem;
       max-width: 1000px;
     }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -151,12 +189,15 @@
       font-family: var(--font-m);
       animation: fadeUp .7s ease both;
     }
+
     .hero-badge-dot {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       background: var(--amber);
       border-radius: 50%;
       animation: blink 2s infinite;
     }
+
     .hero-name {
       font-family: var(--font-d);
       font-size: clamp(3.2rem, 9vw, 7rem);
@@ -166,7 +207,12 @@
       margin-bottom: 1.2rem;
       animation: fadeUp .7s .1s ease both;
     }
-    .hero-name em { font-style: italic; color: var(--amber); }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--amber);
+    }
+
     .hero-tagline {
       font-family: var(--font-d);
       font-size: clamp(1.05rem, 2.2vw, 1.5rem);
@@ -177,6 +223,7 @@
       max-width: 620px;
       animation: fadeUp .7s .2s ease both;
     }
+
     .hero-cta {
       display: flex;
       gap: 1rem;
@@ -197,11 +244,13 @@
       border-radius: 2px;
       transition: background .2s, transform .2s, box-shadow .2s;
     }
+
     .btn-primary:hover {
       background: var(--amber-light);
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(229,156,15,0.25);
+      box-shadow: 0 10px 30px rgba(229, 156, 15, 0.25);
     }
+
     .btn-secondary {
       display: inline-block;
       padding: .88rem 2.2rem;
@@ -215,7 +264,11 @@
       border-radius: 2px;
       transition: background .2s, transform .2s;
     }
-    .btn-secondary:hover { background: var(--amber-dim); transform: translateY(-3px); }
+
+    .btn-secondary:hover {
+      background: var(--amber-dim);
+      transform: translateY(-3px);
+    }
 
     .scroll-hint {
       position: absolute;
@@ -232,8 +285,10 @@
       animation: fadeIn 1.2s 1s ease both;
       z-index: 2;
     }
+
     .scroll-hint-line {
-      width: 40px; height: 1px;
+      width: 40px;
+      height: 1px;
       background: linear-gradient(90deg, var(--amber), transparent);
       animation: widthPulse 2s infinite;
     }
@@ -245,6 +300,7 @@
       padding: 7rem 5rem;
       border-top: 1px solid var(--border);
     }
+
     .sec-label {
       font-family: var(--font-m);
       font-size: .68rem;
@@ -253,6 +309,7 @@
       text-transform: uppercase;
       margin-bottom: .6rem;
     }
+
     .sec-title {
       font-family: var(--font-d);
       font-size: clamp(2.2rem, 5vw, 3.8rem);
@@ -261,7 +318,11 @@
       margin-bottom: 3.5rem;
       color: var(--text);
     }
-    .sec-title em { font-style: italic; color: var(--amber); }
+
+    .sec-title em {
+      font-style: italic;
+      color: var(--amber);
+    }
 
     /* reveal */
     .r {
@@ -269,7 +330,11 @@
       transform: translateY(28px);
       transition: opacity .7s ease, transform .7s ease;
     }
-    .r.on { opacity: 1; transform: translateY(0); }
+
+    .r.on {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* ─── ABOUT ─── */
     .about-grid {
@@ -278,13 +343,18 @@
       gap: 5rem;
       align-items: start;
     }
+
     .about-p {
       color: var(--muted);
       font-size: .94rem;
       line-height: 1.85;
       margin-bottom: 1.1rem;
     }
-    .about-p strong { color: var(--text); font-weight: 500; }
+
+    .about-p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
 
     .stats-row {
       display: grid;
@@ -292,12 +362,14 @@
       gap: 1rem;
       margin-top: 2.8rem;
     }
+
     .stat {
       padding: 1.4rem;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 4px;
     }
+
     .stat-n {
       font-family: var(--font-d);
       font-size: 2.6rem;
@@ -306,9 +378,18 @@
       line-height: 1;
       margin-bottom: .2rem;
     }
-    .stat-l { font-size: .73rem; color: var(--muted); }
 
-    .about-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+    .stat-l {
+      font-size: .73rem;
+      color: var(--muted);
+    }
+
+    .about-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
     .acard {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -318,14 +399,21 @@
       overflow: hidden;
       transition: border-color .25s;
     }
-    .acard:hover { border-color: rgba(229,156,15,.35); }
+
+    .acard:hover {
+      border-color: rgba(229, 156, 15, .35);
+    }
+
     .acard::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 2px;
       background: linear-gradient(90deg, var(--amber), transparent);
     }
+
     .acard h3 {
       font-family: var(--font-d);
       font-size: 1.05rem;
@@ -333,11 +421,17 @@
       color: var(--amber);
       margin-bottom: .9rem;
     }
-    .tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+
     .tag {
       padding: .26rem .65rem;
       background: var(--amber-dim);
-      border: 1px solid rgba(229,156,15,.2);
+      border: 1px solid rgba(229, 156, 15, .2);
       border-radius: 3px;
       font-size: .68rem;
       color: var(--amber-light);
@@ -346,30 +440,44 @@
     }
 
     /* ─── EXPERIENCE ─── */
-    .timeline { position: relative; padding-left: .5px; }
+    .timeline {
+      position: relative;
+      padding-left: .5px;
+    }
+
     .timeline::before {
       content: '';
       position: absolute;
-      left: 0; top: 0; bottom: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
       width: 1px;
-      background: linear-gradient(to bottom, var(--amber) 0%, rgba(229,156,15,.1) 100%);
+      background: linear-gradient(to bottom, var(--amber) 0%, rgba(229, 156, 15, .1) 100%);
     }
+
     .titem {
       padding-left: 2.8rem;
       padding-bottom: 4rem;
       position: relative;
     }
-    .titem:last-child { padding-bottom: 0; }
+
+    .titem:last-child {
+      padding-bottom: 0;
+    }
+
     .titem::before {
       content: '';
       position: absolute;
-      left: -4.5px; top: 7px;
-      width: 10px; height: 10px;
+      left: -4.5px;
+      top: 7px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: var(--amber);
-      box-shadow: 0 0 12px rgba(229,156,15,.4);
+      box-shadow: 0 0 12px rgba(229, 156, 15, .4);
       border: 2px solid var(--bg);
     }
+
     .t-period {
       font-family: var(--font-m);
       font-size: .68rem;
@@ -377,6 +485,7 @@
       letter-spacing: .12em;
       margin-bottom: .4rem;
     }
+
     .t-company {
       font-family: var(--font-d);
       font-size: clamp(1.5rem, 3vw, 2rem);
@@ -384,6 +493,7 @@
       color: var(--text);
       margin-bottom: .15rem;
     }
+
     .t-role {
       font-size: .8rem;
       color: var(--amber);
@@ -391,13 +501,20 @@
       letter-spacing: .06em;
       margin-bottom: .9rem;
     }
+
     .t-desc {
       color: var(--muted);
       font-size: .88rem;
       line-height: 1.78;
       max-width: 680px;
     }
-    .t-tags { display: flex; flex-wrap: wrap; gap: .38rem; margin-top: .9rem; }
+
+    .t-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .38rem;
+      margin-top: .9rem;
+    }
 
     /* ─── TECH STACK STRIP ─── */
     .stack-container {
@@ -406,6 +523,7 @@
       border-radius: 8px;
       overflow: hidden;
     }
+
     .stack-row {
       display: grid;
       grid-template-columns: 200px 1fr;
@@ -415,8 +533,15 @@
       border-bottom: 1px solid var(--border);
       transition: background .25s;
     }
-    .stack-row:last-child { border-bottom: none; }
-    .stack-row:hover { background: rgba(229,156,15,.03); }
+
+    .stack-row:last-child {
+      border-bottom: none;
+    }
+
+    .stack-row:hover {
+      background: rgba(229, 156, 15, .03);
+    }
+
     .stack-cat {
       font-family: var(--font-m);
       font-size: .7rem;
@@ -427,21 +552,25 @@
       align-items: center;
       gap: .65rem;
     }
+
     .stack-cat-dot {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       background: var(--amber);
       border-radius: 50%;
       flex-shrink: 0;
     }
+
     .stack-chips {
       display: flex;
       flex-wrap: wrap;
       gap: .45rem;
     }
+
     .stack-chip {
       padding: .35rem .8rem;
       background: var(--bg);
-      border: 1px solid rgba(229,156,15,.18);
+      border: 1px solid rgba(229, 156, 15, .18);
       border-radius: 4px;
       font-size: .72rem;
       color: var(--text);
@@ -449,14 +578,16 @@
       letter-spacing: .03em;
       transition: border-color .2s, color .2s, transform .15s;
     }
+
     .stack-chip:hover {
       border-color: var(--amber);
       color: var(--amber-light);
       transform: translateY(-2px);
     }
+
     .stack-foot {
       padding: 1.2rem 1.8rem;
-      background: rgba(229,156,15,.04);
+      background: rgba(229, 156, 15, .04);
       border-top: 1px solid var(--border);
       font-family: var(--font-m);
       font-size: .68rem;
@@ -467,6 +598,7 @@
       gap: .6rem;
       flex-wrap: wrap;
     }
+
     .stack-foot strong {
       color: var(--amber);
       font-weight: 400;
@@ -478,6 +610,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1.2rem;
     }
+
     .sk-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -486,14 +619,31 @@
       transition: border-color .25s, transform .25s, box-shadow .25s;
       cursor: default;
     }
+
     .sk-card:hover {
-      border-color: rgba(229,156,15,.4);
+      border-color: rgba(229, 156, 15, .4);
       transform: translateY(-5px);
-      box-shadow: 0 16px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(229,156,15,.08);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .4), 0 0 0 1px rgba(229, 156, 15, .08);
     }
-    .sk-icon { font-size: 1.4rem; margin-bottom: .7rem; }
-    .sk-name { font-size: .88rem; font-weight: 600; color: var(--text); margin-bottom: .35rem; }
-    .sk-desc { font-size: .76rem; color: var(--muted); line-height: 1.65; }
+
+    .sk-icon {
+      font-size: 1.4rem;
+      margin-bottom: .7rem;
+    }
+
+    .sk-name {
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .35rem;
+    }
+
+    .sk-desc {
+      font-size: .76rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
     .sk-bar {
       margin-top: .85rem;
       height: 2px;
@@ -501,12 +651,13 @@
       border-radius: 2px;
       overflow: hidden;
     }
+
     .sk-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--amber), var(--amber-light));
       width: 0;
       border-radius: 2px;
-      transition: width 1.3s cubic-bezier(.22,1,.36,1);
+      transition: width 1.3s cubic-bezier(.22, 1, .36, 1);
     }
 
     /* ─── PROJECTS ─── */
@@ -515,6 +666,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1.2rem;
     }
+
     .proj-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -527,18 +679,29 @@
       color: inherit;
       display: block;
     }
-    .proj-card:hover { border-color: rgba(229,156,15,.4); transform: translateY(-5px); }
+
+    .proj-card:hover {
+      border-color: rgba(229, 156, 15, .4);
+      transform: translateY(-5px);
+    }
+
     .proj-card::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       height: 2px;
       background: linear-gradient(90deg, var(--amber), transparent);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform .3s;
     }
-    .proj-card:hover::after { transform: scaleX(1); }
+
+    .proj-card:hover::after {
+      transform: scaleX(1);
+    }
+
     .proj-card::before {
       content: '';
       position: absolute;
@@ -548,7 +711,11 @@
       transition: opacity .3s;
       pointer-events: none;
     }
-    .proj-card:hover::before { opacity: 1; }
+
+    .proj-card:hover::before {
+      opacity: 1;
+    }
+
     .proj-label {
       font-family: var(--font-m);
       font-size: .64rem;
@@ -560,6 +727,7 @@
       align-items: center;
       justify-content: space-between;
     }
+
     .proj-badge {
       font-family: var(--font-m);
       font-size: .58rem;
@@ -567,16 +735,19 @@
       border-radius: 20px;
       letter-spacing: .1em;
     }
+
     .proj-badge.live {
-      background: rgba(34,197,94,.12);
-      border: 1px solid rgba(34,197,94,.3);
+      background: rgba(34, 197, 94, .12);
+      border: 1px solid rgba(34, 197, 94, .3);
       color: #4ade80;
     }
+
     .proj-badge.soon {
       background: var(--amber-dim);
-      border: 1px solid rgba(229,156,15,.25);
+      border: 1px solid rgba(229, 156, 15, .25);
       color: var(--amber);
     }
+
     .proj-title {
       font-family: var(--font-d);
       font-size: 1.25rem;
@@ -585,8 +756,20 @@
       margin-bottom: .7rem;
       line-height: 1.3;
     }
-    .proj-desc { font-size: .82rem; color: var(--muted); line-height: 1.72; }
-    .proj-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 1rem; }
+
+    .proj-desc {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+      margin-top: 1rem;
+    }
+
     .proj-link {
       display: inline-flex;
       align-items: center;
@@ -598,7 +781,10 @@
       letter-spacing: .06em;
       transition: gap .2s;
     }
-    .proj-card:hover .proj-link { gap: .6rem; }
+
+    .proj-card:hover .proj-link {
+      gap: .6rem;
+    }
 
     /* ─── BLOG ─── */
     .blog-grid {
@@ -606,6 +792,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1.2rem;
     }
+
     .blog-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -615,7 +802,12 @@
       display: block;
       transition: border-color .25s, transform .25s;
     }
-    .blog-card:hover { border-color: rgba(229,156,15,.4); transform: translateY(-5px); }
+
+    .blog-card:hover {
+      border-color: rgba(229, 156, 15, .4);
+      transform: translateY(-5px);
+    }
+
     .blog-date {
       font-family: var(--font-m);
       font-size: .64rem;
@@ -623,6 +815,7 @@
       letter-spacing: .15em;
       margin-bottom: .65rem;
     }
+
     .blog-title {
       font-family: var(--font-d);
       font-size: 1.25rem;
@@ -631,7 +824,13 @@
       margin-bottom: .6rem;
       line-height: 1.32;
     }
-    .blog-excerpt { font-size: .8rem; color: var(--muted); line-height: 1.7; }
+
+    .blog-excerpt {
+      font-size: .8rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
     .blog-read {
       display: inline-flex;
       align-items: center;
@@ -642,11 +841,21 @@
       font-weight: 500;
       transition: gap .2s;
     }
-    .blog-card:hover .blog-read { gap: .6rem; }
+
+    .blog-card:hover .blog-read {
+      gap: .6rem;
+    }
 
     /* ─── CONTACT ─── */
-    #contact { text-align: center; }
-    #contact .sec-label, #contact .sec-title { text-align: center; }
+    #contact {
+      text-align: center;
+    }
+
+    #contact .sec-label,
+    #contact .sec-title {
+      text-align: center;
+    }
+
     .contact-sub {
       color: var(--muted);
       max-width: 520px;
@@ -654,6 +863,7 @@
       font-size: .9rem;
       line-height: 1.75;
     }
+
     .contact-email {
       display: inline-block;
       font-family: var(--font-d);
@@ -662,18 +872,24 @@
       font-style: italic;
       color: var(--amber);
       text-decoration: none;
-      border-bottom: 1px solid rgba(229,156,15,.4);
+      border-bottom: 1px solid rgba(229, 156, 15, .4);
       padding-bottom: .25rem;
       margin-bottom: 3rem;
       transition: color .2s, border-color .2s;
     }
-    .contact-email:hover { color: var(--amber-light); border-color: var(--amber-light); }
+
+    .contact-email:hover {
+      color: var(--amber-light);
+      border-color: var(--amber-light);
+    }
+
     .socials {
       display: flex;
       justify-content: center;
       gap: 2.5rem;
       flex-wrap: wrap;
     }
+
     .soc {
       color: var(--muted);
       text-decoration: none;
@@ -685,7 +901,10 @@
       align-items: center;
       gap: .35rem;
     }
-    .soc:hover { color: var(--amber); }
+
+    .soc:hover {
+      color: var(--amber);
+    }
 
     /* ─── FOOTER ─── */
     footer {
@@ -697,66 +916,160 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
-    footer p { font-size: .72rem; color: var(--muted); }
-    .f-logo { font-family: var(--font-d); font-size: 1.3rem; color: var(--amber); font-weight: 600; }
-    .f-mono { font-family: var(--font-m); font-size: .65rem; color: var(--muted); }
+
+    footer p {
+      font-size: .72rem;
+      color: var(--muted);
+    }
+
+    .f-logo {
+      font-family: var(--font-d);
+      font-size: 1.3rem;
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    .f-mono {
+      font-family: var(--font-m);
+      font-size: .65rem;
+      color: var(--muted);
+    }
 
     /* ─── KEYFRAMES ─── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; } to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
+
     @keyframes blink {
-      0%, 100% { opacity: 1; } 50% { opacity: .25; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .25;
+      }
     }
+
     @keyframes widthPulse {
-      0%, 100% { opacity: .4; } 50% { opacity: 1; }
+
+      0%,
+      100% {
+        opacity: .4;
+      }
+
+      50% {
+        opacity: 1;
+      }
     }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
-      nav { padding: 1.1rem 1.8rem; }
+      nav {
+        padding: 1.1rem 1.8rem;
+      }
+
       .nav-links {
         display: none;
         position: fixed;
         inset: 0;
-        background: rgba(13,11,8,.97);
+        background: rgba(13, 11, 8, .97);
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 2.5rem;
         z-index: 199;
       }
-      .nav-links.open { display: flex; }
-      .nav-links.open a { font-size: 1.1rem; }
-      .hamburger { display: flex; }
 
-      .hero-content { padding: 0 1.8rem; }
-      .scroll-hint { left: 1.8rem; }
-      .sec-wrap { padding: 5rem 1.8rem; }
+      .nav-links.open {
+        display: flex;
+      }
 
-      .about-grid { grid-template-columns: 1fr; gap: 2.8rem; }
-      .stats-row { grid-template-columns: 1fr 1fr; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .proj-grid { grid-template-columns: 1fr; }
-      .blog-grid { grid-template-columns: 1fr; }
+      .nav-links.open a {
+        font-size: 1.1rem;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-content {
+        padding: 0 1.8rem;
+      }
+
+      .scroll-hint {
+        left: 1.8rem;
+      }
+
+      .sec-wrap {
+        padding: 5rem 1.8rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.8rem;
+      }
+
+      .stats-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .proj-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
 
       .stack-row {
         grid-template-columns: 1fr;
         gap: .8rem;
         padding: 1.3rem 1.4rem;
       }
-      .stack-foot { padding: 1rem 1.4rem; }
 
-      footer { padding: 1.5rem 1.8rem; flex-direction: column; text-align: center; }
+      .stack-foot {
+        padding: 1rem 1.4rem;
+      }
+
+      footer {
+        padding: 1.5rem 1.8rem;
+        flex-direction: column;
+        text-align: center;
+      }
     }
 
     @media (max-width: 560px) {
-      .skills-grid { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: 1fr 1fr; }
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-row {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 
@@ -766,6 +1079,7 @@
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
+
 <body>
 
   <!-- ╔══════════════════════════════╗ -->
@@ -818,9 +1132,18 @@
     <h2 class="sec-title r">The engineer<br><em>behind the uptime.</em></h2>
     <div class="about-grid">
       <div>
-        <p class="about-p r">I'm a <strong>DevOps & SRE professional</strong> with over <strong>11 years of experience</strong> operating production-grade SaaS platforms, cloud-native infrastructure, and B2B API ecosystems — at the precise intersection where engineering depth meets customer trust.</p>
-        <p class="about-p r">I specialize in <strong>Kubernetes, CI/CD automation, OpenTelemetry-based observability, and incident ownership</strong> — helping teams move from reactive firefighting to proactive platform intelligence. Whether designing a GitHub Actions pipeline to GCP Cloud Run, debugging a latency anomaly through distributed traces, or translating a crash-loop backtrace into a board-level risk narrative, I bridge deep technical craft with business impact.</p>
-        <p class="about-p r">Most recently at <strong>Middleware.io</strong>, I owned end-to-end observability support for 50+ enterprise accounts — becoming the primary escalation point for complex APM, trace, and metric debugging. Before that, I built CI/CD pipelines and led a 24/7 L3 SRE team at <strong>Ola Electric</strong>, and delivered Fortune 500 technical account success at <strong>Sprinklr</strong>.</p>
+        <p class="about-p r">I'm a <strong>DevOps & SRE professional</strong> with over <strong>11 years of
+            experience</strong> operating production-grade SaaS platforms, cloud-native infrastructure, and B2B API
+          ecosystems — at the precise intersection where engineering depth meets customer trust.</p>
+        <p class="about-p r">I specialize in <strong>Kubernetes, CI/CD automation, OpenTelemetry-based observability,
+            and incident ownership</strong> — helping teams move from reactive firefighting to proactive platform
+          intelligence. Whether designing a GitHub Actions pipeline to GCP Cloud Run, debugging a latency anomaly
+          through distributed traces, or translating a crash-loop backtrace into a board-level risk narrative, I bridge
+          deep technical craft with business impact.</p>
+        <p class="about-p r">Most recently at <strong>Middleware.io</strong>, I owned end-to-end observability support
+          for 50+ enterprise accounts — becoming the primary escalation point for complex APM, trace, and metric
+          debugging. Before that, I built CI/CD pipelines and led a 24/7 L3 SRE team at <strong>Ola Electric</strong>,
+          and delivered Fortune 500 technical account success at <strong>Sprinklr</strong>.</p>
         <div class="stats-row">
           <div class="stat r">
             <div class="stat-n">11+</div>
@@ -961,7 +1284,13 @@
         <div class="t-company">Middleware.io</div>
         <div class="t-role">Technical Support Engineer · Cloud Observability</div>
         <p class="t-desc">
-          Owned production observability and troubleshooting for 50+ global enterprise accounts across APM, logs, metrics, traces, and RUM. Debugged complex distributed systems — latency spikes, CPU/memory pressure, trace gaps — using OpenTelemetry, Prometheus, and Grafana, reducing MTTR by 35%. Reproduced customer workloads in Node.js, Python, Kubernetes, and Cloud Run to isolate root causes and drive engineering fixes. Translated production issues into actionable product feedback, directly influencing the OpsAI and Continuous Profiling roadmap. Authored technical runbooks and best-practice guides that improved customer self-service and platform stability.
+          Owned production observability and troubleshooting for 50+ global enterprise accounts across APM, logs,
+          metrics, traces, and RUM. Debugged complex distributed systems — latency spikes, CPU/memory pressure, trace
+          gaps — using OpenTelemetry, Prometheus, and Grafana, reducing MTTR by 35%. Reproduced customer workloads in
+          Node.js, Python, Kubernetes, and Cloud Run to isolate root causes and drive engineering fixes. Translated
+          production issues into actionable product feedback, directly influencing the OpsAI and Continuous Profiling
+          roadmap. Authored technical runbooks and best-practice guides that improved customer self-service and platform
+          stability.
         </p>
         <div class="t-tags">
           <span class="tag">OpenTelemetry</span>
@@ -981,7 +1310,11 @@
         <div class="t-company">Career Development & Upskilling</div>
         <div class="t-role">Full-time parent · Active upskilling in DevOps & Cloud</div>
         <p class="t-desc">
-          Took a planned career break for full-time parenting while actively building hands-on DevOps skills. Shipped GitHub Actions pipelines deploying to GCP Cloud Run, built Prometheus/Grafana monitoring stacks with Slack-integrated alerting, and practiced infrastructure-as-code with Terraform and Docker Compose. Pursued Microsoft Power BI Data Analyst certification (completed) and progressed toward Google Cloud Professional DevOps Engineer, CKA, and CKAD.
+          Took a planned career break for full-time parenting while actively building hands-on DevOps skills. Shipped
+          GitHub Actions pipelines deploying to GCP Cloud Run, built Prometheus/Grafana monitoring stacks with
+          Slack-integrated alerting, and practiced infrastructure-as-code with Terraform and Docker Compose. Pursued
+          Microsoft Power BI Data Analyst certification (completed) and progressed toward Google Cloud Professional
+          DevOps Engineer, CKA, and CKAD.
         </p>
         <div class="t-tags">
           <span class="tag">GitHub Actions</span>
@@ -999,7 +1332,12 @@
         <div class="t-company">Ola Electric</div>
         <div class="t-role">L3 Product Support Engineer · SRE / DevOps</div>
         <p class="t-desc">
-          Owned production reliability and incident response for an OTA vehicle software platform running large-scale 24/7 deployments. Designed CI/CD pipelines on Azure DevOps — improving deployment velocity by 40% and cutting manual release steps by 80%. Built observability dashboards across Grafana, Dynatrace, and Splunk, and managed API Gateway integrations via Apigee. Led incident management and RCA workflows, reducing MTTR by 40% through automated runbooks and post-mortem process improvements. Scaled and mentored the 24/7 L3 support team from 7 to 20 engineers — establishing on-call rotations, SLA frameworks, and training programs.
+          Owned production reliability and incident response for an OTA vehicle software platform running large-scale
+          24/7 deployments. Designed CI/CD pipelines on Azure DevOps — improving deployment velocity by 40% and cutting
+          manual release steps by 80%. Built observability dashboards across Grafana, Dynatrace, and Splunk, and managed
+          API Gateway integrations via Apigee. Led incident management and RCA workflows, reducing MTTR by 40% through
+          automated runbooks and post-mortem process improvements. Scaled and mentored the 24/7 L3 support team from 7
+          to 20 engineers — establishing on-call rotations, SLA frameworks, and training programs.
         </p>
         <div class="t-tags">
           <span class="tag">Azure DevOps</span>
@@ -1019,7 +1357,11 @@
         <div class="t-company">Sprinklr</div>
         <div class="t-role">Technical Account Manager (TAM)</div>
         <p class="t-desc">
-          Served as technical SPOC for Fortune 500 enterprise accounts — Apple, Microsoft, Dell, Samsung, UBS — maintaining 95%+ CSAT. Led B2B API integrations across Salesforce, Slack, Zendesk, and Adobe Analytics, ensuring zero-downtime migrations. Managed a GetSatisfaction → Sprinklr Communities platform migration with SSO/SAML configurations for 100K+ users. Conducted RCAs for critical incidents, mentored junior engineers, and improved operational best practices across the team.
+          Served as technical SPOC for Fortune 500 enterprise accounts — Apple, Microsoft, Dell, Samsung, UBS —
+          maintaining 95%+ CSAT. Led B2B API integrations across Salesforce, Slack, Zendesk, and Adobe Analytics,
+          ensuring zero-downtime migrations. Managed a GetSatisfaction → Sprinklr Communities platform migration with
+          SSO/SAML configurations for 100K+ users. Conducted RCAs for critical incidents, mentored junior engineers, and
+          improved operational best practices across the team.
         </p>
         <div class="t-tags">
           <span class="tag">Salesforce API</span>
@@ -1037,7 +1379,9 @@
         <div class="t-company">Plivo · Movate · IBM · Aditya Birla</div>
         <div class="t-role">Enterprise APIs · IVR/VoIP · Production Support</div>
         <p class="t-desc">
-          5 years building a strong foundation across enterprise API support, IVR/VoIP platform operations, and production troubleshooting at scale. Worked across telecom, IT services, and conglomerate verticals — developing the systematic debugging mindset and customer-facing technical depth that powers everything since.
+          5 years building a strong foundation across enterprise API support, IVR/VoIP platform operations, and
+          production troubleshooting at scale. Worked across telecom, IT services, and conglomerate verticals —
+          developing the systematic debugging mindset and customer-facing technical depth that powers everything since.
         </p>
         <div class="t-tags">
           <span class="tag">Enterprise APIs</span>
@@ -1061,64 +1405,91 @@
       <div class="sk-card r">
         <div class="sk-icon">📡</div>
         <div class="sk-name">Observability & APM</div>
-        <div class="sk-desc">End-to-end telemetry — metrics, logs, traces, RUM. Deep expertise in OpenTelemetry, Prometheus, Grafana, Dynatrace, New Relic, Splunk, and ELK at enterprise scale.</div>
-        <div class="sk-bar"><div class="sk-fill" data-w="93"></div></div>
+        <div class="sk-desc">End-to-end telemetry — metrics, logs, traces, RUM. Deep expertise in OpenTelemetry,
+          Prometheus, Grafana, Dynatrace, New Relic, Splunk, and ELK at enterprise scale.</div>
+        <div class="sk-bar">
+          <div class="sk-fill" data-w="93"></div>
+        </div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">☁️</div>
         <div class="sk-name">Google Cloud Platform</div>
-        <div class="sk-desc">GCE, GKE, Cloud Run, Cloud Logging & Monitoring, IAM. Comfortable across the full Compute stack and cloud-native architecture patterns.</div>
-        <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div>
+        <div class="sk-desc">GCE, GKE, Cloud Run, Cloud Logging & Monitoring, IAM. Comfortable across the full Compute
+          stack and cloud-native architecture patterns.</div>
+        <div class="sk-bar">
+          <div class="sk-fill" data-w="80"></div>
+        </div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">🐳</div>
         <div class="sk-name">Kubernetes</div>
-        <div class="sk-desc">Pod debugging, resource constraints, HPA, PVCs, node affinity, DaemonSets. Skilled at diagnosing cluster-level failures and translating them into stakeholder-legible narratives.</div>
-        <div class="sk-bar"><div class="sk-fill" data-w="83"></div></div>
+        <div class="sk-desc">Pod debugging, resource constraints, HPA, PVCs, node affinity, DaemonSets. Skilled at
+          diagnosing cluster-level failures and translating them into stakeholder-legible narratives.</div>
+        <div class="sk-bar">
+          <div class="sk-fill" data-w="83"></div>
+        </div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">⚙️</div>
         <div class="sk-name">CI/CD & DevOps</div>
-        <div class="sk-desc">GitHub Actions, Azure DevOps, Jenkins. Designed pipelines that cut deployment time by 40% and eliminated 80% of manual release steps at production scale.</div>
-        <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div>
+        <div class="sk-desc">GitHub Actions, Azure DevOps, Jenkins. Designed pipelines that cut deployment time by 40%
+          and eliminated 80% of manual release steps at production scale.</div>
+        <div class="sk-bar">
+          <div class="sk-fill" data-w="85"></div>
+        </div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">🐧</div>
         <div class="sk-name">Linux Systems</div>
-        <div class="sk-desc">Performance analysis, process management, filesystem diagnostics, systemd, cgroups, kernel parameters. Comfortable operating in production at any hour.</div>
-        <div class="sk-bar"><div class="sk-fill" data-w="88"></div></div>
+        <div class="sk-desc">Performance analysis, process management, filesystem diagnostics, systemd, cgroups, kernel
+          parameters. Comfortable operating in production at any hour.</div>
+        <div class="sk-bar">
+          <div class="sk-fill" data-w="88"></div>
+        </div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">🌐</div>
         <div class="sk-name">Networking</div>
-        <div class="sk-desc">TCP/IP, DNS, HTTP/S, TLS, VPCs, load balancers, firewalls. Can trace a packet from browser to backend — and explain exactly where and why it got dropped.</div>
-        <div class="sk-bar"><div class="sk-fill" data-w="86"></div></div>
+        <div class="sk-desc">TCP/IP, DNS, HTTP/S, TLS, VPCs, load balancers, firewalls. Can trace a packet from browser
+          to backend — and explain exactly where and why it got dropped.</div>
+        <div class="sk-bar">
+          <div class="sk-fill" data-w="86"></div>
+        </div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">🐍</div>
         <div class="sk-name">Python & Scripting</div>
-        <div class="sk-desc">Python for automation, API testing, monitoring integrations, and tooling. Bash for ops scripts, diagnostic pipelines, and environment bootstrapping.</div>
-        <div class="sk-bar"><div class="sk-fill" data-w="78"></div></div>
+        <div class="sk-desc">Python for automation, API testing, monitoring integrations, and tooling. Bash for ops
+          scripts, diagnostic pipelines, and environment bootstrapping.</div>
+        <div class="sk-bar">
+          <div class="sk-fill" data-w="78"></div>
+        </div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">🔐</div>
         <div class="sk-name">Security & IAM</div>
-        <div class="sk-desc">OAuth2, OIDC, SAML, SSO. Experience with API Gateway configurations (Apigee), enterprise SSO migrations for 100K+ users, and zero-downtime auth integrations.</div>
-        <div class="sk-bar"><div class="sk-fill" data-w="75"></div></div>
+        <div class="sk-desc">OAuth2, OIDC, SAML, SSO. Experience with API Gateway configurations (Apigee), enterprise
+          SSO migrations for 100K+ users, and zero-downtime auth integrations.</div>
+        <div class="sk-bar">
+          <div class="sk-fill" data-w="75"></div>
+        </div>
       </div>
 
       <div class="sk-card r">
         <div class="sk-icon">🤝</div>
         <div class="sk-name">Customer Success & SRE</div>
-        <div class="sk-desc">QBRs, adoption metrics, churn prevention, escalation leadership. Scaled L3 SRE teams from 7→20 engineers. Proven track record of turning at-risk accounts into long-term champions.</div>
-        <div class="sk-bar"><div class="sk-fill" data-w="96"></div></div>
+        <div class="sk-desc">QBRs, adoption metrics, churn prevention, escalation leadership. Scaled L3 SRE teams from
+          7→20 engineers. Proven track record of turning at-risk accounts into long-term champions.</div>
+        <div class="sk-bar">
+          <div class="sk-fill" data-w="96"></div>
+        </div>
       </div>
 
     </div>
@@ -1138,7 +1509,8 @@
           <span class="proj-badge live">Live</span>
         </div>
         <div class="proj-title">This Portfolio</div>
-        <p class="proj-desc">A production-grade personal portfolio site with a Three.js 3D hero, scroll-triggered animations, amber/charcoal dark theme, and full mobile responsiveness. Built from scratch — no templates.</p>
+        <p class="proj-desc">A production-grade personal portfolio site with a Three.js 3D hero, scroll-triggered
+          animations, amber/charcoal dark theme, and full mobile responsiveness. Built from scratch — no templates.</p>
         <div class="proj-tags">
           <span class="tag">Three.js</span><span class="tag">CSS Animations</span><span class="tag">Vercel</span>
         </div>
@@ -1151,7 +1523,8 @@
           <span class="proj-badge live">Live</span>
         </div>
         <div class="proj-title">3D Humpty — Interactive Character</div>
-        <p class="proj-desc">An interactive 3D character experience built with Three.js. A dancing Humpty Dumpty you can control — built to sharpen my 3D rendering and real-time animation skills in the browser.</p>
+        <p class="proj-desc">An interactive 3D character experience built with Three.js. A dancing Humpty Dumpty you can
+          control — built to sharpen my 3D rendering and real-time animation skills in the browser.</p>
         <div class="proj-tags">
           <span class="tag">Three.js</span><span class="tag">3D Animation</span><span class="tag">Interactive</span>
         </div>
@@ -1164,9 +1537,11 @@
           <span class="proj-badge live">★ 5 Stars</span>
         </div>
         <div class="proj-title">Consciousness</div>
-        <p class="proj-desc">An exploratory creative coding experiment — pushing the boundaries of what pure HTML and JavaScript can express. One of my most starred personal projects.</p>
+        <p class="proj-desc">An exploratory creative coding experiment — pushing the boundaries of what pure HTML and
+          JavaScript can express. One of my most starred personal projects.</p>
         <div class="proj-tags">
-          <span class="tag">Creative Coding</span><span class="tag">HTML Canvas</span><span class="tag">Generative</span>
+          <span class="tag">Creative Coding</span><span class="tag">HTML Canvas</span><span
+            class="tag">Generative</span>
         </div>
         <span class="proj-link">↗ github.com/MahendraRao/consciousness</span>
       </a>
@@ -1177,9 +1552,13 @@
           <span class="proj-badge live">Live MVP</span>
         </div>
         <div class="proj-title">ClawBridge</div>
-        <p class="proj-desc">A GitHub-hosted AI wrapper for OpenClaw — built as a React + Vite frontend and local Express + TypeScript API. Simplifies installation, system diagnostics, provider setup (OpenAI / Anthropic / Ollama / custom), and first-run onboarding for non-coders. Working MVP today; Electron packaging, OpenTelemetry, and Docker/K8s integration on the roadmap.</p>
+        <p class="proj-desc">A GitHub-hosted AI wrapper for OpenClaw — built as a React + Vite frontend and local
+          Express + TypeScript API. Simplifies installation, system diagnostics, provider setup (OpenAI / Anthropic /
+          Ollama / custom), and first-run onboarding for non-coders. Working MVP today; Electron packaging,
+          OpenTelemetry, and Docker/K8s integration on the roadmap.</p>
         <div class="proj-tags">
-          <span class="tag">React</span><span class="tag">Vite</span><span class="tag">TypeScript</span><span class="tag">Express</span><span class="tag">AI Tooling</span>
+          <span class="tag">React</span><span class="tag">Vite</span><span class="tag">TypeScript</span><span
+            class="tag">Express</span><span class="tag">AI Tooling</span>
         </div>
         <span class="proj-link">↗ github.com/MahendraRao/clawbridge</span>
       </a>
@@ -1190,9 +1569,12 @@
           <span class="proj-badge soon">In Progress</span>
         </div>
         <div class="proj-title">OTel Debug Companion</div>
-        <p class="proj-desc">A CLI tool that interrogates your OpenTelemetry pipeline — checking collector health, trace ingestion rates, span drop rates, and SDK configuration — and surfaces actionable diagnostics. The runbook I always wished existed during enterprise escalations.</p>
+        <p class="proj-desc">A CLI tool that interrogates your OpenTelemetry pipeline — checking collector health, trace
+          ingestion rates, span drop rates, and SDK configuration — and surfaces actionable diagnostics. The runbook I
+          always wished existed during enterprise escalations.</p>
         <div class="proj-tags">
-          <span class="tag">OpenTelemetry</span><span class="tag">Python</span><span class="tag">Observability</span><span class="tag">CLI</span>
+          <span class="tag">OpenTelemetry</span><span class="tag">Python</span><span
+            class="tag">Observability</span><span class="tag">CLI</span>
         </div>
         <span class="proj-link" style="color:var(--muted)">↗ Coming soon on GitHub</span>
       </div>
@@ -1203,9 +1585,12 @@
           <span class="proj-badge soon">In Progress</span>
         </div>
         <div class="proj-title">GCP Cloud Run Pipeline Template</div>
-        <p class="proj-desc">A production-ready GitHub Actions workflow template for deploying containerized apps to GCP Cloud Run — with built-in secret management, smoke tests, rollback on failure, and Slack notifications. Built during upskilling, now being polished for open source.</p>
+        <p class="proj-desc">A production-ready GitHub Actions workflow template for deploying containerized apps to GCP
+          Cloud Run — with built-in secret management, smoke tests, rollback on failure, and Slack notifications. Built
+          during upskilling, now being polished for open source.</p>
         <div class="proj-tags">
-          <span class="tag">GitHub Actions</span><span class="tag">GCP</span><span class="tag">Cloud Run</span><span class="tag">Docker</span>
+          <span class="tag">GitHub Actions</span><span class="tag">GCP</span><span class="tag">Cloud Run</span><span
+            class="tag">Docker</span>
         </div>
         <span class="proj-link" style="color:var(--muted)">↗ Coming soon on GitHub</span>
       </div>
@@ -1213,16 +1598,21 @@
       <div class="proj-card r">
         <div class="proj-label">Observability · Middleware.io</div>
         <div class="proj-title">Zero-to-OpenTelemetry Enterprise Onboarding</div>
-        <p class="proj-desc">Designed and executed a structured onboarding program for enterprise customers adopting OpenTelemetry from scratch. Reduced time-to-value from weeks to days by building instrumentation guides, debug runbooks, and live troubleshooting playbooks for Go, Python, and Node.js stacks.</p>
+        <p class="proj-desc">Designed and executed a structured onboarding program for enterprise customers adopting
+          OpenTelemetry from scratch. Reduced time-to-value from weeks to days by building instrumentation guides, debug
+          runbooks, and live troubleshooting playbooks for Go, Python, and Node.js stacks.</p>
         <div class="proj-tags">
-          <span class="tag">OpenTelemetry</span><span class="tag">Onboarding</span><span class="tag">Time-to-Value</span>
+          <span class="tag">OpenTelemetry</span><span class="tag">Onboarding</span><span
+            class="tag">Time-to-Value</span>
         </div>
       </div>
 
       <div class="proj-card r">
         <div class="proj-label">Process Design · Ola Electric</div>
         <div class="proj-title">Escalation Framework Built from Ground Zero</div>
-        <p class="proj-desc">Built a tiered escalation framework and knowledge infrastructure at a company scaling at breakneck speed. Defined SLAs, trained L1/L2 agents, and created engineering feedback loops that led to measurable reduction in repeat incidents across the product lifecycle.</p>
+        <p class="proj-desc">Built a tiered escalation framework and knowledge infrastructure at a company scaling at
+          breakneck speed. Defined SLAs, trained L1/L2 agents, and created engineering feedback loops that led to
+          measurable reduction in repeat incidents across the product lifecycle.</p>
         <div class="proj-tags">
           <span class="tag">Escalation Design</span><span class="tag">SLA</span><span class="tag">Training</span>
         </div>
@@ -1231,7 +1621,9 @@
       <div class="proj-card r">
         <div class="proj-label">Enterprise Success · Sprinklr</div>
         <div class="proj-title">Fortune 500 Account Success Program</div>
-        <p class="proj-desc">Managed strategic success programs for Fortune 500 accounts on the Sprinklr CXM platform. Delivered impactful QBRs, drove feature adoption, and acted as the technical-business bridge during critical escalations — converting at-risk relationships into multi-year renewals.</p>
+        <p class="proj-desc">Managed strategic success programs for Fortune 500 accounts on the Sprinklr CXM platform.
+          Delivered impactful QBRs, drove feature adoption, and acted as the technical-business bridge during critical
+          escalations — converting at-risk relationships into multi-year renewals.</p>
         <div class="proj-tags">
           <span class="tag">QBR</span><span class="tag">Adoption</span><span class="tag">Renewal</span>
         </div>
@@ -1251,21 +1643,24 @@
       <a href="#" class="blog-card r">
         <div class="blog-date">Coming Soon</div>
         <div class="blog-title">OpenTelemetry in Production: What Nobody Tells You</div>
-        <p class="blog-excerpt">Lessons from instrumenting real production systems — the gotchas, the sampling edge cases, and why your traces are probably lying to you.</p>
+        <p class="blog-excerpt">Lessons from instrumenting real production systems — the gotchas, the sampling edge
+          cases, and why your traces are probably lying to you.</p>
         <span class="blog-read">Read more →</span>
       </a>
 
       <a href="#" class="blog-card r">
         <div class="blog-date">Coming Soon</div>
         <div class="blog-title">The CI/CD Pipeline That Saved 80% of Our Manual Work</div>
-        <p class="blog-excerpt">How we redesigned the OTA software deployment pipeline at Ola Electric — and what most teams get wrong about release velocity vs. release safety.</p>
+        <p class="blog-excerpt">How we redesigned the OTA software deployment pipeline at Ola Electric — and what most
+          teams get wrong about release velocity vs. release safety.</p>
         <span class="blog-read">Read more →</span>
       </a>
 
       <a href="#" class="blog-card r">
         <div class="blog-date">Coming Soon</div>
         <div class="blog-title">The Kubernetes Debugging Playbook I Wish Existed on Day One</div>
-        <p class="blog-excerpt">A field-tested guide to pod failures, resource starvation, and network black holes — written from a support engineer's perspective, not a textbook author's.</p>
+        <p class="blog-excerpt">A field-tested guide to pod failures, resource starvation, and network black holes —
+          written from a support engineer's perspective, not a textbook author's.</p>
         <span class="blog-read">Read more →</span>
       </a>
 
@@ -1278,13 +1673,16 @@
   <div class="sec-wrap" id="contact">
     <p class="sec-label r">// 07 — Contact</p>
     <h2 class="sec-title r">Let's build<br><em>something together.</em></h2>
-    <p class="contact-sub r">Open to <strong style="color:var(--text)">DevOps Engineer, SRE, Cloud TSE, Solutions Engineer</strong>, and Platform Engineering roles — especially in observability, cloud infrastructure, or enterprise SaaS. Based in Bengaluru · Open to remote &amp; hybrid.</p>
+    <p class="contact-sub r">Open to <strong style="color:var(--text)">DevOps Engineer, SRE, Cloud TSE, Solutions
+        Engineer</strong>, and Platform Engineering roles — especially in observability, cloud infrastructure, or
+      enterprise SaaS. Based in Bengaluru · Open to remote &amp; hybrid.</p>
     <a href="#" id="contactEmail" class="contact-email r">nkneelkumar [at] gmail [dot] com</a>
     <div class="socials r">
       <a href="https://www.linkedin.com/in/mahendra-rao/" class="soc" target="_blank" rel="noopener">↗ LinkedIn</a>
       <a href="https://github.com/MahendraRao" class="soc" target="_blank" rel="noopener">↗ GitHub</a>
       <a href="https://x.com/MahendraRao14" class="soc" target="_blank" rel="noopener">↗ Twitter / X</a>
-      <a href="https://drive.google.com/file/d/1ejShyAYPAr9i8rvmEl_e0GyW-4CUmGBv/view?usp=sharing" class="soc" target="_blank" rel="noopener">↗ Resume (PDF)</a>
+      <a href="https://drive.google.com/file/d/19eq2beRF-mrky0Y8jdfpurmkxhU9y1XD/view?usp=drive_link" class="soc"
+        target="_blank" rel="noopener">↗ Resume (PDF)</a>
     </div>
   </div>
 
@@ -1297,141 +1695,143 @@
     <span class="f-mono">devops · sre · observability</span>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // ══════════════════════════════════════════════
-  //  THREE.JS — 3D hero background
-  // ══════════════════════════════════════════════
-  (function () {
-    const canvas = document.getElementById('three-canvas');
-    const W = () => canvas.offsetWidth;
-    const H = () => canvas.offsetHeight;
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
+    // ══════════════════════════════════════════════
+    //  THREE.JS — 3D hero background
+    // ══════════════════════════════════════════════
+    (function () {
+      const canvas = document.getElementById('three-canvas');
+      const W = () => canvas.offsetWidth;
+      const H = () => canvas.offsetHeight;
 
-    const scene    = new THREE.Scene();
-    const camera   = new THREE.PerspectiveCamera(55, W() / H(), 0.1, 100);
-    camera.position.z = 7;
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(55, W() / H(), 0.1, 100);
+      camera.position.z = 7;
 
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    renderer.setSize(W(), H());
-
-    // — Particles field
-    const pGeo = new THREE.BufferGeometry();
-    const N = 700;
-    const pos = new Float32Array(N * 3);
-    for (let i = 0; i < N * 3; i++) pos[i] = (Math.random() - .5) * 24;
-    pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    const pMat = new THREE.PointsMaterial({ color: 0xe59c0f, size: .045, transparent: true, opacity: .45 });
-    scene.add(new THREE.Points(pGeo, pMat));
-
-    // — Large wireframe icosahedron (right)
-    const iGeo  = new THREE.IcosahedronGeometry(2.6, 1);
-    const iWire = new THREE.WireframeGeometry(iGeo);
-    const iMesh = new THREE.LineSegments(iWire, new THREE.LineBasicMaterial({ color: 0xe59c0f, transparent: true, opacity: .17 }));
-    iMesh.position.set(4.5, .5, 0);
-    scene.add(iMesh);
-
-    // — Smaller octahedron (left-bottom)
-    const oGeo  = new THREE.OctahedronGeometry(1.3, 0);
-    const oWire = new THREE.WireframeGeometry(oGeo);
-    const oMesh = new THREE.LineSegments(oWire, new THREE.LineBasicMaterial({ color: 0xf5bc45, transparent: true, opacity: .22 }));
-    oMesh.position.set(-4.5, -2, -1);
-    scene.add(oMesh);
-
-    // — Tiny torus knot far back
-    const tkGeo  = new THREE.TorusKnotGeometry(.9, .28, 80, 12);
-    const tkWire = new THREE.WireframeGeometry(tkGeo);
-    const tkMesh = new THREE.LineSegments(tkWire, new THREE.LineBasicMaterial({ color: 0xe59c0f, transparent: true, opacity: .1 }));
-    tkMesh.position.set(1.5, 2.8, -3);
-    scene.add(tkMesh);
-
-    // — Mouse parallax
-    let mx = 0, my = 0;
-    document.addEventListener('mousemove', e => {
-      mx = (e.clientX / innerWidth  - .5) * 2;
-      my = (e.clientY / innerHeight - .5) * 2;
-    });
-
-    let t = 0;
-    function tick() {
-      requestAnimationFrame(tick);
-      t += .004;
-      iMesh.rotation.x  =  t * .35 + my * .08;
-      iMesh.rotation.y  =  t * .55 + mx * .08;
-      oMesh.rotation.x  = -t * .4;
-      oMesh.rotation.y  =  t * .6;
-      tkMesh.rotation.x =  t * .25;
-      tkMesh.rotation.z =  t * .18;
-      camera.position.x += (mx * .25 - camera.position.x) * .04;
-      camera.position.y += (-my * .18 - camera.position.y) * .04;
-      renderer.render(scene, camera);
-    }
-    tick();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = W() / H();
-      camera.updateProjectionMatrix();
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
       renderer.setSize(W(), H());
-    });
-  })();
 
-  // ══════════════════════════════════════════════
-  //  SCROLL REVEAL
-  // ══════════════════════════════════════════════
-  (function () {
-    ['skills-grid','proj-grid','blog-grid','about-cards','stats-row'].forEach(cls => {
-      document.querySelectorAll('.' + cls).forEach(grid => {
-        [...grid.querySelectorAll('.r')].forEach((el, i) => {
-          el.style.transitionDelay = (i * .09) + 's';
+      // — Particles field
+      const pGeo = new THREE.BufferGeometry();
+      const N = 700;
+      const pos = new Float32Array(N * 3);
+      for (let i = 0; i < N * 3; i++) pos[i] = (Math.random() - .5) * 24;
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      const pMat = new THREE.PointsMaterial({ color: 0xe59c0f, size: .045, transparent: true, opacity: .45 });
+      scene.add(new THREE.Points(pGeo, pMat));
+
+      // — Large wireframe icosahedron (right)
+      const iGeo = new THREE.IcosahedronGeometry(2.6, 1);
+      const iWire = new THREE.WireframeGeometry(iGeo);
+      const iMesh = new THREE.LineSegments(iWire, new THREE.LineBasicMaterial({ color: 0xe59c0f, transparent: true, opacity: .17 }));
+      iMesh.position.set(4.5, .5, 0);
+      scene.add(iMesh);
+
+      // — Smaller octahedron (left-bottom)
+      const oGeo = new THREE.OctahedronGeometry(1.3, 0);
+      const oWire = new THREE.WireframeGeometry(oGeo);
+      const oMesh = new THREE.LineSegments(oWire, new THREE.LineBasicMaterial({ color: 0xf5bc45, transparent: true, opacity: .22 }));
+      oMesh.position.set(-4.5, -2, -1);
+      scene.add(oMesh);
+
+      // — Tiny torus knot far back
+      const tkGeo = new THREE.TorusKnotGeometry(.9, .28, 80, 12);
+      const tkWire = new THREE.WireframeGeometry(tkGeo);
+      const tkMesh = new THREE.LineSegments(tkWire, new THREE.LineBasicMaterial({ color: 0xe59c0f, transparent: true, opacity: .1 }));
+      tkMesh.position.set(1.5, 2.8, -3);
+      scene.add(tkMesh);
+
+      // — Mouse parallax
+      let mx = 0, my = 0;
+      document.addEventListener('mousemove', e => {
+        mx = (e.clientX / innerWidth - .5) * 2;
+        my = (e.clientY / innerHeight - .5) * 2;
+      });
+
+      let t = 0;
+      function tick() {
+        requestAnimationFrame(tick);
+        t += .004;
+        iMesh.rotation.x = t * .35 + my * .08;
+        iMesh.rotation.y = t * .55 + mx * .08;
+        oMesh.rotation.x = -t * .4;
+        oMesh.rotation.y = t * .6;
+        tkMesh.rotation.x = t * .25;
+        tkMesh.rotation.z = t * .18;
+        camera.position.x += (mx * .25 - camera.position.x) * .04;
+        camera.position.y += (-my * .18 - camera.position.y) * .04;
+        renderer.render(scene, camera);
+      }
+      tick();
+
+      window.addEventListener('resize', () => {
+        camera.aspect = W() / H();
+        camera.updateProjectionMatrix();
+        renderer.setSize(W(), H());
+      });
+    })();
+
+    // ══════════════════════════════════════════════
+    //  SCROLL REVEAL
+    // ══════════════════════════════════════════════
+    (function () {
+      ['skills-grid', 'proj-grid', 'blog-grid', 'about-cards', 'stats-row'].forEach(cls => {
+        document.querySelectorAll('.' + cls).forEach(grid => {
+          [...grid.querySelectorAll('.r')].forEach((el, i) => {
+            el.style.transitionDelay = (i * .09) + 's';
+          });
         });
       });
-    });
 
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('on');
-          e.target.querySelectorAll('.sk-fill').forEach(bar => {
-            bar.style.width = bar.dataset.w + '%';
-          });
-          io.unobserve(e.target);
-        }
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('on');
+            e.target.querySelectorAll('.sk-fill').forEach(bar => {
+              bar.style.width = bar.dataset.w + '%';
+            });
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: .14 });
+
+      document.querySelectorAll('.r').forEach(el => io.observe(el));
+    })();
+
+    // ══════════════════════════════════════════════
+    //  HAMBURGER
+    // ══════════════════════════════════════════════
+    (function () {
+      const btn = document.getElementById('hamburger');
+      const links = document.getElementById('navLinks');
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('open');
+        links.classList.toggle('open');
       });
-    }, { threshold: .14 });
-
-    document.querySelectorAll('.r').forEach(el => io.observe(el));
-  })();
-
-  // ══════════════════════════════════════════════
-  //  HAMBURGER
-  // ══════════════════════════════════════════════
-  (function () {
-    const btn   = document.getElementById('hamburger');
-    const links = document.getElementById('navLinks');
-    btn.addEventListener('click', () => {
-      btn.classList.toggle('open');
-      links.classList.toggle('open');
-    });
-    links.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        btn.classList.remove('open');
-        links.classList.remove('open');
+      links.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          btn.classList.remove('open');
+          links.classList.remove('open');
+        });
       });
-    });
-  })();
+    })();
 
-  // ══════════════════════════════════════════════
-  //  EMAIL DECODE — bypasses Cloudflare obfuscation
-  // ══════════════════════════════════════════════
-  (function () {
-    const user   = 'nkneelkumar';
-    const domain = 'gmail.com';
-    const el     = document.getElementById('contactEmail');
-    if (el) {
-      const addr = user + '@' + domain;
-      el.textContent = addr;
-      el.href = 'mailto:' + addr;
-    }
-  })();
+    // ══════════════════════════════════════════════
+    //  EMAIL DECODE — bypasses Cloudflare obfuscation
+    // ══════════════════════════════════════════════
+    (function () {
+      const user = 'nkneelkumar';
+      const domain = 'gmail.com';
+      const el = document.getElementById('contactEmail');
+      if (el) {
+        const addr = user + '@' + domain;
+        el.textContent = addr;
+        el.href = 'mailto:' + addr;
+      }
+    })();
   </script>
 </body>
+
 </html>
