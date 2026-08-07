@@ -516,6 +516,50 @@
       margin-top: .9rem;
     }
 
+    /* case-study inner blocks for STAR-P storytelling */
+    .t-case {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 1.8rem;
+      margin-top: .9rem;
+      max-width: 720px;
+    }
+
+    .t-case-block {
+      padding: .9rem 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      border-left: 2px solid var(--amber);
+    }
+
+    .t-case-label {
+      font-family: var(--font-m);
+      font-size: .6rem;
+      color: var(--amber);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: .35rem;
+    }
+
+    .t-case-text {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .t-case-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    @media (max-width: 900px) {
+      .t-case {
+        grid-template-columns: 1fr;
+        gap: .7rem;
+      }
+    }
+
     /* ─── TECH STACK STRIP ─── */
     .stack-container {
       background: var(--surface);
@@ -784,6 +828,161 @@
 
     .proj-card:hover .proj-link {
       gap: .6rem;
+    }
+
+    /* ─── FLAGSHIP PROJECT (ClawBridge case study) ─── */
+    .flagship {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber);
+      border-radius: 8px;
+      padding: 2.2rem 2.4rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flagship::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60%;
+      height: 100%;
+      background: radial-gradient(ellipse at 100% 0%, rgba(229, 156, 15, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .flagship-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: .5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .flagship-label {
+      font-family: var(--font-m);
+      font-size: .65rem;
+      color: var(--amber);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .flagship-title {
+      font-family: var(--font-d);
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: .8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .flagship-title em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .flagship-lead {
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.75;
+      margin-bottom: 1.4rem;
+      max-width: 780px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .flagship-lead strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .flagship-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem 1.6rem;
+      margin-bottom: 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .flagship-block {
+      padding: .9rem 1.1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .flagship-block-label {
+      font-family: var(--font-m);
+      font-size: .6rem;
+      color: var(--amber);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: .4rem;
+    }
+
+    .flagship-block-text {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .flagship-block-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .flagship-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .flagship-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+    }
+
+    .flagship-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .55rem 1.1rem;
+      background: var(--amber);
+      color: #0d0b08;
+      text-decoration: none;
+      font-family: var(--font-m);
+      font-size: .7rem;
+      letter-spacing: .1em;
+      border-radius: 3px;
+      transition: background .2s, transform .2s;
+    }
+
+    .flagship-cta:hover {
+      background: var(--amber-light);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px) {
+      .flagship {
+        padding: 1.6rem 1.4rem;
+      }
+
+      .flagship-grid {
+        grid-template-columns: 1fr;
+        gap: .7rem;
+      }
     }
 
     /* ─── BLOG ─── */
@@ -1112,7 +1311,9 @@
         Open to DevOps · SRE · Cloud TSE roles
       </div>
       <h1 class="hero-name">Mahendra<br><em>Rao.</em></h1>
-      <p class="hero-tagline">"Turning system noise into customer confidence — one signal at a time."</p>
+      <p class="hero-tagline">DevOps &amp; SRE engineer — 11 years turning production chaos into measurable customer
+        trust. Cut MTTR by 35–40% across two enterprise SaaS platforms. Currently building for the observability +
+        AI-ops era.</p>
       <div class="hero-cta">
         <a href="#experience" class="btn-primary">My Journey</a>
         <a href="#contact" class="btn-secondary">Let's Connect</a>
@@ -1129,74 +1330,75 @@
   <!-- ╚══════════════════════════════╝ -->
   <div class="sec-wrap" id="about">
     <p class="sec-label r">// 01 — About</p>
-    <h2 class="sec-title r">The engineer<br><em>behind the uptime.</em></h2>
+    <h2 class="sec-title r">Eleven years<br><em>of production trust.</em></h2>
     <div class="about-grid">
       <div>
-        <p class="about-p r">I'm a <strong>DevOps & SRE professional</strong> with over <strong>11 years of
-            experience</strong> operating production-grade SaaS platforms, cloud-native infrastructure, and B2B API
-          ecosystems — at the precise intersection where engineering depth meets customer trust.</p>
-        <p class="about-p r">I specialize in <strong>Kubernetes, CI/CD automation, OpenTelemetry-based observability,
-            and incident ownership</strong> — helping teams move from reactive firefighting to proactive platform
-          intelligence. Whether designing a GitHub Actions pipeline to GCP Cloud Run, debugging a latency anomaly
-          through distributed traces, or translating a crash-loop backtrace into a board-level risk narrative, I bridge
-          deep technical craft with business impact.</p>
-        <p class="about-p r">Most recently at <strong>Middleware.io</strong>, I owned end-to-end observability support
-          for 50+ enterprise accounts — becoming the primary escalation point for complex APM, trace, and metric
-          debugging. Before that, I built CI/CD pipelines and led a 24/7 L3 SRE team at <strong>Ola Electric</strong>,
-          and delivered Fortune 500 technical account success at <strong>Sprinklr</strong>.</p>
+        <p class="about-p r"><strong>The through-line:</strong> I've spent 11 years standing between production systems
+          and the customers who depend on them. Every role — telecom IVR, enterprise APIs, Fortune 500 SaaS, OTA vehicle
+          platforms, cloud observability — has been the same underlying job: <strong>find the truth in noisy systems,
+            own it end-to-end, and turn what's broken into what's measurable.</strong></p>
+        <p class="about-p r"><strong>What that looks like in numbers:</strong> reduced customer MTTR by <strong>35% at
+            Middleware.io</strong> across 50+ enterprise observability accounts, cut MTTR another <strong>40% at Ola
+            Electric</strong> while improving deployment velocity 40% and eliminating 80% of manual release steps, and
+          scaled a 24/7 L3 SRE team from <strong>7 to 20 engineers</strong>. At Sprinklr, I ran technical accounts for
+          Apple, Microsoft, Dell, Samsung, and UBS at 95%+ CSAT — including an SSO/SAML migration for 100,000+
+          enterprise users.</p>
+        <p class="about-p r"><strong>Where I'm heading:</strong> deeper into <strong>SRE, platform engineering, and
+            cloud solutions</strong> — with a particular interest in how observability, incident response, and identity
+          are reshaping around AI-driven workloads. My open-source project <a
+            href="https://github.com/MahendraRao/clawbridge" target="_blank" rel="noopener"
+            style="color:var(--amber); text-decoration:none; border-bottom:1px dashed var(--amber);">ClawBridge</a> is
+          where I'm exploring that intersection publicly. Currently in Bengaluru, open to remote and on-site roles.</p>
         <div class="stats-row">
           <div class="stat r">
             <div class="stat-n">11+</div>
-            <div class="stat-l">Years in the field</div>
+            <div class="stat-l">Years in production</div>
           </div>
           <div class="stat r">
-            <div class="stat-n">35%</div>
-            <div class="stat-l">MTTR reduction at Middleware</div>
+            <div class="stat-n">35–40%</div>
+            <div class="stat-l">MTTR reduction across roles</div>
           </div>
           <div class="stat r">
-            <div class="stat-n">40%</div>
-            <div class="stat-l">Deploy velocity gain at Ola</div>
+            <div class="stat-n">100K+</div>
+            <div class="stat-l">Users migrated to SSO/SAML</div>
           </div>
           <div class="stat r">
-            <div class="stat-n">50+</div>
-            <div class="stat-l">Enterprise accounts owned</div>
+            <div class="stat-n">7 → 20</div>
+            <div class="stat-l">L3 SRE team scaled</div>
           </div>
         </div>
       </div>
       <div class="about-cards">
         <div class="acard r">
-          <h3>Core Stack</h3>
+          <h3>Where I've delivered</h3>
           <div class="tags">
-            <span class="tag">Kubernetes</span>
-            <span class="tag">GCP / GKE</span>
-            <span class="tag">Docker</span>
-            <span class="tag">OpenTelemetry</span>
-            <span class="tag">Prometheus</span>
-            <span class="tag">Grafana</span>
-            <span class="tag">GitHub Actions</span>
-            <span class="tag">Azure DevOps</span>
-            <span class="tag">Linux</span>
+            <span class="tag">Enterprise SaaS</span>
+            <span class="tag">B2B APIs</span>
+            <span class="tag">Cloud Observability</span>
+            <span class="tag">Identity / SSO</span>
+            <span class="tag">OTA / IoT platforms</span>
+            <span class="tag">Fortune 500 accounts</span>
           </div>
         </div>
         <div class="acard r">
-          <h3>SRE & DevOps Practices</h3>
+          <h3>How I operate</h3>
           <div class="tags">
-            <span class="tag">Incident Management</span>
-            <span class="tag">RCA / Post-mortems</span>
-            <span class="tag">SLO / SLI</span>
-            <span class="tag">CI/CD Pipelines</span>
-            <span class="tag">On-call Ownership</span>
-            <span class="tag">IaC (Terraform)</span>
+            <span class="tag">End-to-end ownership</span>
+            <span class="tag">Root cause first</span>
+            <span class="tag">Runbook everything</span>
+            <span class="tag">SLO / SLI driven</span>
+            <span class="tag">Product feedback loops</span>
+            <span class="tag">Mentor the next line</span>
           </div>
         </div>
         <div class="acard r">
-          <h3>Currently Targeting</h3>
+          <h3>What comes next</h3>
           <div class="tags">
-            <span class="tag">Google Cloud TSE</span>
-            <span class="tag">DevOps Engineer</span>
-            <span class="tag">SRE</span>
-            <span class="tag">Solutions Engineering</span>
-            <span class="tag">Platform Engineering</span>
+            <span class="tag">Senior SRE / Platform</span>
+            <span class="tag">Cloud TSE / Solutions</span>
+            <span class="tag">Observability for AI</span>
+            <span class="tag">Incident-response tooling</span>
+            <span class="tag">Open-source contribution</span>
           </div>
         </div>
       </div>
@@ -1279,19 +1481,40 @@
     <h2 class="sec-title r">Where I've<br><em>built my craft.</em></h2>
     <div class="timeline">
 
+      <!-- ───── Middleware.io ───── -->
       <div class="titem r">
         <div class="t-period">March 2025 — December 2025</div>
         <div class="t-company">Middleware.io</div>
         <div class="t-role">Technical Support Engineer · Cloud Observability</div>
-        <p class="t-desc">
-          Owned production observability and troubleshooting for 50+ global enterprise accounts across APM, logs,
-          metrics, traces, and RUM. Debugged complex distributed systems — latency spikes, CPU/memory pressure, trace
-          gaps — using OpenTelemetry, Prometheus, and Grafana, reducing MTTR by 35%. Reproduced customer workloads in
-          Node.js, Python, Kubernetes, and Cloud Run to isolate root causes and drive engineering fixes. Translated
-          production issues into actionable product feedback, directly influencing the OpsAI and Continuous Profiling
-          roadmap. Authored technical runbooks and best-practice guides that improved customer self-service and platform
-          stability.
-        </p>
+        <p class="t-desc">Owned end-to-end observability support for 50+ global enterprise SaaS customers on a modern
+          OpenTelemetry-native platform — the direct engineering-and-customer interface for a fast-growing observability
+          product.</p>
+        <div class="t-case">
+          <div class="t-case-block">
+            <div class="t-case-label">The situation</div>
+            <div class="t-case-text">Customers running distributed workloads across Node.js, Python, Kubernetes, and
+              Cloud Run were seeing intermittent latency, memory pressure, and gaps in their traces. Ticket volume was
+              outpacing engineering's ability to root-cause quickly.</div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What I did</div>
+            <div class="t-case-text">Reproduced customer environments locally, instrumented workloads with
+              OpenTelemetry, and used Prometheus + Grafana to isolate root causes. Wrote runbooks for the recurring
+              failure modes. Fed patterns back to engineering as roadmap-shaping product feedback.</div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What changed</div>
+            <div class="t-case-text"><strong>MTTR down 35%</strong> across the account portfolio. Repeat-issue volume
+              dropped as runbooks became customer self-service. Two of my product-feedback threads shipped as features
+              in <strong>OpsAI and Continuous Profiling</strong>.</div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What's next</div>
+            <div class="t-case-text">Deeper into the AI-observability space — instrumentation for LLM applications,
+              span-drop diagnostics, and support tooling for the next generation of workloads. Building <strong>OTel
+                Debug Companion</strong> as a personal follow-through.</div>
+          </div>
+        </div>
         <div class="t-tags">
           <span class="tag">OpenTelemetry</span>
           <span class="tag">APM</span>
@@ -1299,46 +1522,92 @@
           <span class="tag">Prometheus</span>
           <span class="tag">Grafana</span>
           <span class="tag">Kubernetes</span>
-          <span class="tag">Cloud Run</span>
-          <span class="tag">Python</span>
+          <span class="tag">GCP Cloud Run</span>
           <span class="tag">Node.js</span>
+          <span class="tag">Python</span>
         </div>
       </div>
 
+      <!-- ───── Career Break + Upskilling ───── -->
       <div class="titem r">
         <div class="t-period">April 2023 — February 2025</div>
-        <div class="t-company">Career Development & Upskilling</div>
-        <div class="t-role">Full-time parent · Active upskilling in DevOps & Cloud</div>
-        <p class="t-desc">
-          Took a planned career break for full-time parenting while actively building hands-on DevOps skills. Shipped
-          GitHub Actions pipelines deploying to GCP Cloud Run, built Prometheus/Grafana monitoring stacks with
-          Slack-integrated alerting, and practiced infrastructure-as-code with Terraform and Docker Compose. Pursued
-          Microsoft Power BI Data Analyst certification (completed) and progressed toward Google Cloud Professional
-          DevOps Engineer, CKA, and CKAD.
-        </p>
+        <div class="t-company">Independent Practice &amp; Full-Time Parent</div>
+        <div class="t-role">Deliberate career break · Hands-on upskilling in modern DevOps</div>
+        <p class="t-desc">Took a planned break to be present for family — and used the time deliberately to move my
+          stack forward from the older telco/enterprise-integration era into cloud-native, container-orchestrated,
+          GitOps-driven engineering.</p>
+        <div class="t-case">
+          <div class="t-case-block">
+            <div class="t-case-label">The situation</div>
+            <div class="t-case-text">My prior decade was strong on enterprise APIs, incident management, and customer
+              engineering — but light on the modern container / IaC / cloud-CI/CD tooling that senior platform roles now
+              expect. Rather than fake it, I set out to genuinely earn it.</div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What I did</div>
+            <div class="t-case-text">Built end-to-end pipelines with GitHub Actions deploying to GCP Cloud Run. Ran
+              Prometheus/Grafana with Slack-integrated alerting. Practiced Terraform, Docker Compose, and Kubernetes
+              locally. Earned Power BI Data Analyst; started CKA / CKAD / GCP DevOps Engineer / AWS SAA-C03.</div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What changed</div>
+            <div class="t-case-text">Walked into <strong>Middleware.io</strong> on the strength of that self-directed
+              practice — and immediately delivered the 35% MTTR improvement. The upskilling wasn't cosmetic; it was
+              <strong>the reason the next role happened.</strong>
+            </div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What's next</div>
+            <div class="t-case-text">Finishing the cert stack (AWS SAA-C03 in progress) and moving hands-on time toward
+              what I'm actually building — <strong>ClawBridge</strong>, <strong>OTel Debug Companion</strong>, and
+              public writing about incident response and observability craft.</div>
+          </div>
+        </div>
         <div class="t-tags">
           <span class="tag">GitHub Actions</span>
           <span class="tag">GCP Cloud Run</span>
-          <span class="tag">Prometheus</span>
-          <span class="tag">Grafana</span>
+          <span class="tag">Kubernetes</span>
           <span class="tag">Docker</span>
           <span class="tag">Terraform</span>
-          <span class="tag">Kubernetes</span>
+          <span class="tag">Prometheus / Grafana</span>
+          <span class="tag">CKA · CKAD (in progress)</span>
         </div>
       </div>
 
+      <!-- ───── Ola Electric ───── -->
       <div class="titem r">
         <div class="t-period">April 2022 — April 2023</div>
         <div class="t-company">Ola Electric</div>
         <div class="t-role">L3 Product Support Engineer · SRE / DevOps</div>
-        <p class="t-desc">
-          Owned production reliability and incident response for an OTA vehicle software platform running large-scale
-          24/7 deployments. Designed CI/CD pipelines on Azure DevOps — improving deployment velocity by 40% and cutting
-          manual release steps by 80%. Built observability dashboards across Grafana, Dynatrace, and Splunk, and managed
-          API Gateway integrations via Apigee. Led incident management and RCA workflows, reducing MTTR by 40% through
-          automated runbooks and post-mortem process improvements. Scaled and mentored the 24/7 L3 support team from 7
-          to 20 engineers — establishing on-call rotations, SLA frameworks, and training programs.
-        </p>
+        <p class="t-desc">Owned production reliability for the OTA vehicle software platform at a hypergrowth EV company
+          — the pipeline that pushed firmware and app updates to a live fleet of electric two-wheelers.</p>
+        <div class="t-case">
+          <div class="t-case-block">
+            <div class="t-case-label">The situation</div>
+            <div class="t-case-text">A young platform, a growing fleet, and a small 24/7 L3 support team (7 engineers).
+              Deployments were largely manual, MTTR was inconsistent, and the on-call load was crushing the team as
+              customer count kept climbing.</div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What I did</div>
+            <div class="t-case-text">Rebuilt the CI/CD pipeline on Azure DevOps with proper stage gates. Stood up
+              observability across Grafana, Dynatrace, and Splunk. Standardized RCA and post-mortem process. Formalized
+              on-call rotations, SLAs, training material, and a knowledge base. Managed API Gateway integrations via
+              Apigee.</div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What changed</div>
+            <div class="t-case-text"><strong>Deployment velocity +40%</strong>. <strong>Manual release steps
+                −80%</strong>. <strong>MTTR down 40%</strong> through automation and structured post-mortems. Team
+              scaled from <strong>7 → 20 engineers</strong> with an on-call culture that survived my exit.</div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What's next</div>
+            <div class="t-case-text">The lessons — on-call sustainability, RCA discipline, automation-as-culture — carry
+              directly into how I think about senior SRE and platform work today. This role is why I take runbook craft
+              as seriously as I do.</div>
+          </div>
+        </div>
         <div class="t-tags">
           <span class="tag">Azure DevOps</span>
           <span class="tag">CI/CD</span>
@@ -1348,46 +1617,85 @@
           <span class="tag">Apigee</span>
           <span class="tag">SRE</span>
           <span class="tag">Incident Management</span>
-          <span class="tag">RCA</span>
+          <span class="tag">Team scaling</span>
         </div>
       </div>
 
+      <!-- ───── Sprinklr ───── -->
       <div class="titem r">
         <div class="t-period">May 2019 — April 2022</div>
         <div class="t-company">Sprinklr</div>
-        <div class="t-role">Technical Account Manager (TAM)</div>
-        <p class="t-desc">
-          Served as technical SPOC for Fortune 500 enterprise accounts — Apple, Microsoft, Dell, Samsung, UBS —
-          maintaining 95%+ CSAT. Led B2B API integrations across Salesforce, Slack, Zendesk, and Adobe Analytics,
-          ensuring zero-downtime migrations. Managed a GetSatisfaction → Sprinklr Communities platform migration with
-          SSO/SAML configurations for 100K+ users. Conducted RCAs for critical incidents, mentored junior engineers, and
-          improved operational best practices across the team.
-        </p>
+        <div class="t-role">Technical Account Manager · Enterprise Identity &amp; Integrations</div>
+        <p class="t-desc">Technical SPOC for a Fortune 500 enterprise portfolio — <strong>Apple, Microsoft, Dell,
+            Samsung, UBS</strong> — on the Sprinklr CXM platform. The role sat right where API integration depth met
+          executive-level customer trust.</p>
+        <div class="t-case">
+          <div class="t-case-block">
+            <div class="t-case-label">The situation</div>
+            <div class="t-case-text">Enterprise customers were consolidating identity providers, migrating off legacy
+              community platforms (GetSatisfaction), and demanding zero-downtime B2B API integrations across Salesforce,
+              Slack, Zendesk, and Adobe Analytics. Any misstep would land in a Fortune 500 exec inbox.</div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What I did</div>
+            <div class="t-case-text">Architected the GetSatisfaction → Sprinklr Communities migration with SSO/SAML for
+              <strong>100,000+ enterprise users</strong>. Ran the B2B integration work end-to-end (OAuth2/REST contract
+              validation, staged cutovers, rollback plans). Led critical-incident RCAs and mentored junior engineers on
+              customer-facing craft.
+            </div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What changed</div>
+            <div class="t-case-text">Sustained <strong>95%+ CSAT</strong> across the Fortune 500 portfolio. The
+              community migration was the largest of its kind on the platform that year — <strong>zero downtime, zero
+                identity failures</strong>. Multiple accounts renewed multi-year on the strength of that delivery.</div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What's next</div>
+            <div class="t-case-text">The identity/auth muscle from here (OAuth2, OIDC, SAML, SSO, API Gateway) is
+              exactly what powers my current interest in <strong>Okta / Auth0-style identity roles</strong> and in
+              supporting enterprise SaaS at that scale again.</div>
+          </div>
+        </div>
         <div class="t-tags">
           <span class="tag">Salesforce API</span>
-          <span class="tag">OAuth2 / SAML</span>
+          <span class="tag">OAuth2 / OIDC</span>
+          <span class="tag">SAML / SSO</span>
           <span class="tag">B2B Integrations</span>
-          <span class="tag">SSO</span>
           <span class="tag">Enterprise SaaS</span>
           <span class="tag">Fortune 500</span>
           <span class="tag">95%+ CSAT</span>
         </div>
       </div>
 
+      <!-- ───── Earlier Foundation ───── -->
       <div class="titem r">
         <div class="t-period">2014 — 2019</div>
-        <div class="t-company">Plivo · Movate · IBM · Aditya Birla</div>
-        <div class="t-role">Enterprise APIs · IVR/VoIP · Production Support</div>
-        <p class="t-desc">
-          5 years building a strong foundation across enterprise API support, IVR/VoIP platform operations, and
-          production troubleshooting at scale. Worked across telecom, IT services, and conglomerate verticals —
-          developing the systematic debugging mindset and customer-facing technical depth that powers everything since.
-        </p>
+        <div class="t-company">Plivo · Movate (CSS Corp) · IBM · Aditya Birla Group</div>
+        <div class="t-role">Enterprise APIs · IVR / VoIP · Production support</div>
+        <p class="t-desc">Five years of foundational work across telecom (Plivo), IT services (Movate, IBM), and
+          enterprise conglomerates (Aditya Birla) — supporting APIs, IVR / VoIP platforms, and production incident
+          workflows at scale.</p>
+        <div class="t-case">
+          <div class="t-case-block">
+            <div class="t-case-label">What it built</div>
+            <div class="t-case-text">The systematic debugging instinct — <strong>subdivide a problem, follow the packet,
+                don't guess</strong> — and the customer-facing composure that later made Fortune 500 accounts possible.
+              This is the layer everything since has been built on.</div>
+          </div>
+          <div class="t-case-block">
+            <div class="t-case-label">What it means now</div>
+            <div class="t-case-text">Whenever I sit down to debug a modern distributed system, I still use the same
+              first-principles approach I learned here: <strong>find the source of truth, verify at each layer, and
+                never trust a symptom</strong>. Tools change; the discipline doesn't.</div>
+          </div>
+        </div>
         <div class="t-tags">
           <span class="tag">Enterprise APIs</span>
           <span class="tag">IVR / VoIP</span>
           <span class="tag">Production Troubleshooting</span>
           <span class="tag">Telecom</span>
+          <span class="tag">Foundational years</span>
         </div>
       </div>
 
@@ -1499,8 +1807,64 @@
   <!-- ║       PROJECTS               ║ -->
   <!-- ╚══════════════════════════════╝ -->
   <div class="sec-wrap" id="projects">
-    <p class="sec-label r">// 05 — Projects & Open Source</p>
-    <h2 class="sec-title r">Things I've<br><em>actually shipped.</em></h2>
+    <p class="sec-label r">// 05 — Projects &amp; Case Studies</p>
+    <h2 class="sec-title r">Where the work<br><em>lives publicly.</em></h2>
+
+    <!-- ═════════ FLAGSHIP: ClawBridge ═════════ -->
+    <div class="flagship r">
+      <div class="flagship-header">
+        <span class="flagship-label">Flagship · Open Source · Live MVP</span>
+        <span class="flagship-label" style="color: var(--muted)">github.com/MahendraRao/clawbridge</span>
+      </div>
+      <h3 class="flagship-title">ClawBridge — a friendly bridge to <em>OpenClaw</em>.</h3>
+      <p class="flagship-lead">
+        My most current, publicly-visible engineering work — and my genuine entry point into the <strong>AI-tooling and
+          developer-experience</strong> space. Built end-to-end with a modern JavaScript/TypeScript stack, designed to
+        lower the technical friction of using OpenClaw for non-developer users.
+      </p>
+      <div class="flagship-grid">
+        <div class="flagship-block">
+          <div class="flagship-block-label">The problem</div>
+          <div class="flagship-block-text">OpenClaw is powerful but has a steep setup curve — install dependencies,
+            configure providers (OpenAI / Anthropic / Ollama / custom), validate the environment, launch. Every one of
+            those steps is a place a non-developer gives up.</div>
+        </div>
+        <div class="flagship-block">
+          <div class="flagship-block-label">The approach</div>
+          <div class="flagship-block-text"><strong>React + Vite + TypeScript</strong> frontend paired with a local
+            <strong>Express + Node.js</strong> API. Handles install, system diagnostics, provider orchestration, and
+            first-run onboarding — all through a UI a non-coder can navigate.
+          </div>
+        </div>
+        <div class="flagship-block">
+          <div class="flagship-block-label">Current state</div>
+          <div class="flagship-block-text"><strong>Working MVP today.</strong> Real installation flow, working provider
+            integration (OpenAI + Anthropic + Ollama), local diagnostics. Public on GitHub — architecture and code
+            visible for review.</div>
+        </div>
+        <div class="flagship-block">
+          <div class="flagship-block-label">What's next</div>
+          <div class="flagship-block-text"><strong>Electron packaging</strong> for cross-platform desktop,
+            <strong>OpenTelemetry instrumentation</strong> for observability, and <strong>Docker / Kubernetes</strong>
+            deployment paths. Actively developed — happy to walk anyone through the code.
+          </div>
+        </div>
+      </div>
+      <div class="flagship-footer">
+        <div class="flagship-tags">
+          <span class="tag">React</span>
+          <span class="tag">Vite</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Node.js / Express</span>
+          <span class="tag">Provider orchestration</span>
+          <span class="tag">OpenAI · Anthropic · Ollama</span>
+          <span class="tag">Developer Experience</span>
+        </div>
+        <a href="https://github.com/MahendraRao/clawbridge" target="_blank" rel="noopener" class="flagship-cta">View on
+          GitHub ↗</a>
+      </div>
+    </div>
+
     <div class="proj-grid">
 
       <a href="https://github.com/MahendraRao/mahendra-portfolio" target="_blank" rel="noopener" class="proj-card r">
@@ -1546,32 +1910,15 @@
         <span class="proj-link">↗ github.com/MahendraRao/consciousness</span>
       </a>
 
-      <a href="https://github.com/MahendraRao/clawbridge" target="_blank" rel="noopener" class="proj-card r">
-        <div class="proj-label">
-          GitHub · React + TypeScript
-          <span class="proj-badge live">Live MVP</span>
-        </div>
-        <div class="proj-title">ClawBridge</div>
-        <p class="proj-desc">A GitHub-hosted AI wrapper for OpenClaw — built as a React + Vite frontend and local
-          Express + TypeScript API. Simplifies installation, system diagnostics, provider setup (OpenAI / Anthropic /
-          Ollama / custom), and first-run onboarding for non-coders. Working MVP today; Electron packaging,
-          OpenTelemetry, and Docker/K8s integration on the roadmap.</p>
-        <div class="proj-tags">
-          <span class="tag">React</span><span class="tag">Vite</span><span class="tag">TypeScript</span><span
-            class="tag">Express</span><span class="tag">AI Tooling</span>
-        </div>
-        <span class="proj-link">↗ github.com/MahendraRao/clawbridge</span>
-      </a>
-
       <div class="proj-card r">
         <div class="proj-label">
-          Coming Soon · Python / OTEL
+          Coming Soon · Python / OTel
           <span class="proj-badge soon">In Progress</span>
         </div>
         <div class="proj-title">OTel Debug Companion</div>
         <p class="proj-desc">A CLI tool that interrogates your OpenTelemetry pipeline — checking collector health, trace
-          ingestion rates, span drop rates, and SDK configuration — and surfaces actionable diagnostics. The runbook I
-          always wished existed during enterprise escalations.</p>
+          ingestion rates, span drop rates, and SDK configuration. The runbook I wished existed during enterprise
+          escalations at Middleware.</p>
         <div class="proj-tags">
           <span class="tag">OpenTelemetry</span><span class="tag">Python</span><span
             class="tag">Observability</span><span class="tag">CLI</span>
@@ -1585,9 +1932,9 @@
           <span class="proj-badge soon">In Progress</span>
         </div>
         <div class="proj-title">GCP Cloud Run Pipeline Template</div>
-        <p class="proj-desc">A production-ready GitHub Actions workflow template for deploying containerized apps to GCP
-          Cloud Run — with built-in secret management, smoke tests, rollback on failure, and Slack notifications. Built
-          during upskilling, now being polished for open source.</p>
+        <p class="proj-desc">A production-ready GitHub Actions workflow template for deploying to GCP Cloud Run — with
+          secret management, smoke tests, rollback on failure, and Slack notifications. Built during upskilling;
+          polishing for open source.</p>
         <div class="proj-tags">
           <span class="tag">GitHub Actions</span><span class="tag">GCP</span><span class="tag">Cloud Run</span><span
             class="tag">Docker</span>
@@ -1596,11 +1943,11 @@
       </div>
 
       <div class="proj-card r">
-        <div class="proj-label">Observability · Middleware.io</div>
+        <div class="proj-label">Case Study · Middleware.io</div>
         <div class="proj-title">Zero-to-OpenTelemetry Enterprise Onboarding</div>
-        <p class="proj-desc">Designed and executed a structured onboarding program for enterprise customers adopting
-          OpenTelemetry from scratch. Reduced time-to-value from weeks to days by building instrumentation guides, debug
-          runbooks, and live troubleshooting playbooks for Go, Python, and Node.js stacks.</p>
+        <p class="proj-desc">Designed a structured onboarding for enterprise customers adopting OpenTelemetry from
+          scratch — instrumentation guides, debug runbooks, and troubleshooting playbooks for Go, Python, and Node.js.
+          Cut time-to-value from weeks to days.</p>
         <div class="proj-tags">
           <span class="tag">OpenTelemetry</span><span class="tag">Onboarding</span><span
             class="tag">Time-to-Value</span>
@@ -1608,22 +1955,22 @@
       </div>
 
       <div class="proj-card r">
-        <div class="proj-label">Process Design · Ola Electric</div>
+        <div class="proj-label">Case Study · Ola Electric</div>
         <div class="proj-title">Escalation Framework Built from Ground Zero</div>
-        <p class="proj-desc">Built a tiered escalation framework and knowledge infrastructure at a company scaling at
-          breakneck speed. Defined SLAs, trained L1/L2 agents, and created engineering feedback loops that led to
-          measurable reduction in repeat incidents across the product lifecycle.</p>
+        <p class="proj-desc">Built a tiered escalation framework and knowledge infrastructure during hypergrowth.
+          Defined SLAs, trained L1/L2 agents, and created engineering feedback loops that measurably reduced repeat
+          incidents across the product lifecycle.</p>
         <div class="proj-tags">
           <span class="tag">Escalation Design</span><span class="tag">SLA</span><span class="tag">Training</span>
         </div>
       </div>
 
       <div class="proj-card r">
-        <div class="proj-label">Enterprise Success · Sprinklr</div>
+        <div class="proj-label">Case Study · Sprinklr</div>
         <div class="proj-title">Fortune 500 Account Success Program</div>
-        <p class="proj-desc">Managed strategic success programs for Fortune 500 accounts on the Sprinklr CXM platform.
-          Delivered impactful QBRs, drove feature adoption, and acted as the technical-business bridge during critical
-          escalations — converting at-risk relationships into multi-year renewals.</p>
+        <p class="proj-desc">Ran strategic success for Fortune 500 accounts on the Sprinklr CXM platform. Delivered
+          impactful QBRs, drove feature adoption, and acted as the technical-business bridge during critical escalations
+          — converting at-risk accounts into multi-year renewals.</p>
         <div class="proj-tags">
           <span class="tag">QBR</span><span class="tag">Adoption</span><span class="tag">Renewal</span>
         </div>
@@ -1681,7 +2028,7 @@
       <a href="https://www.linkedin.com/in/mahendra-rao/" class="soc" target="_blank" rel="noopener">↗ LinkedIn</a>
       <a href="https://github.com/MahendraRao" class="soc" target="_blank" rel="noopener">↗ GitHub</a>
       <a href="https://x.com/MahendraRao14" class="soc" target="_blank" rel="noopener">↗ Twitter / X</a>
-      <a href="https://drive.google.com/file/d/19eq2beRF-mrky0Y8jdfpurmkxhU9y1XD/view?usp=drive_link" class="soc"
+      <a href="https://drive.google.com/file/d/1ejShyAYPAr9i8rvmEl_e0GyW-4CUmGBv/view?usp=sharing" class="soc"
         target="_blank" rel="noopener">↗ Resume (PDF)</a>
     </div>
   </div>
